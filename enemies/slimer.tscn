@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdkdbdo8rlvxa"]
+
+[ext_resource type="Texture2D" uid="uid://cm1nhih748qcp" path="res://assets/objects.png" id="1_u4ol8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lvjq"]
+atlas = ExtResource("1_u4ol8")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7yxxn"]
+atlas = ExtResource("1_u4ol8")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1yh12"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lvjq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7yxxn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ra5li"]
+size = Vector2(12, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kvjh"]
+size = Vector2(12, 1)
+
+[node name="slimer" type="CharacterBody2D"]
+position = Vector2(360, 200)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_1yh12")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ra5li")
+
+[node name="collider_stomp" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -8)
+shape = SubResource("RectangleShape2D_6kvjh")
