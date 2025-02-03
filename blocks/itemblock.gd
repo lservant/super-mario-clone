@@ -36,6 +36,7 @@ func give_item():
   item.toggle_physics(false)
   await item_tween.tween_property(item, "position:y", item.position.y-20, 0.5).finished
   item.toggle_physics(true)
+  has_item = false
   
 func give_coin():
   anim.play("give_coin")

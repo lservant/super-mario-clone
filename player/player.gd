@@ -6,9 +6,11 @@ class_name Player
 const accel = 100.0
 const max_walk = 100.0
 const max_run = 200.0
+
 const jump_height = 20.0
 const jump_spring = 50
 const jump_time = 0.3
+
 const weight = 0.11
 const friction = 0.22
 
