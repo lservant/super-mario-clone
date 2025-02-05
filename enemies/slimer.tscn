@@ -44,11 +44,11 @@ _data = {
 "move": SubResource("Animation_xl3kb")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_235m3"]
-size = Vector2(10, 13)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6kvjh"]
 size = Vector2(16, 3.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_235m3"]
+size = Vector2(10, 13)
 
 [node name="slimer" type="CharacterBody2D"]
 collision_layer = 8
@@ -74,6 +74,15 @@ libraries = {
 }
 autoplay = "move"
 
+[node name="collider_stomp" type="Area2D" parent="."]
+position = Vector2(0, -7)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider_stomp"]
+position = Vector2(1, -0.375)
+shape = SubResource("RectangleShape2D_6kvjh")
+
 [node name="collider_hit" type="Area2D" parent="."]
 position = Vector2(0, -7.25)
 collision_layer = 10
@@ -84,20 +93,11 @@ position = Vector2(0, 9.75)
 shape = SubResource("RectangleShape2D_235m3")
 debug_color = Color(0.998559, 0, 0.138814, 0.42)
 
-[node name="collider_stomp" type="Area2D" parent="."]
-position = Vector2(0, -7)
-collision_layer = 8
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collider_stomp"]
-position = Vector2(1, -0.375)
-shape = SubResource("RectangleShape2D_6kvjh")
-
 [node name="ray_wallcheck" type="RayCast2D" parent="."]
 target_position = Vector2(10, 0)
 collision_mask = 9
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
-[connection signal="body_entered" from="collider_hit" to="." method="_on_collider_hit_body_entered"]
 [connection signal="body_entered" from="collider_stomp" to="." method="_on_collider_stomp_body_entered"]
+[connection signal="body_entered" from="collider_hit" to="." method="_on_collider_hit_body_entered"]

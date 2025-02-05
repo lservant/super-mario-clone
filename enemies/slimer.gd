@@ -51,7 +51,7 @@ func _on_collider_hit_body_entered(body:Node2D) -> void:
     return
   if body.name != "player":
     return
-  
+  print("hit")
   var player: Player = body
   player.hit()
 
@@ -59,9 +59,10 @@ func _on_collider_hit_body_entered(body:Node2D) -> void:
 func _on_collider_stomp_body_entered(body:Node2D) -> void:
   if body.name != "player":
     return
-  
   var player: Player = body
   if player.current_state == "fall" or player.current_state == "jump":
+    print("stomp")
+    is_stomped = true
     player.change_state("bounce")
     die()
 
