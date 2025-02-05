@@ -58,6 +58,7 @@ func _on_collider_stomp_body_entered(body:Node2D) -> void:
   
   var player: Player = body
   if player.current_state == "fall" or player.current_state == "jump":
+    player.change_state("bounce")
     die()
 
 
