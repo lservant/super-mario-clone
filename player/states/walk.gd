@@ -8,9 +8,9 @@ func _physics_process(delta: float) -> void:
     return
   
   if player.is_running:
-    player.anim.play("run")
+    player.anim_movement.play("run")
   else:
-    player.anim.play("walk")
+    player.anim_movement.play("walk")
 
   if handle_horizontal(delta) == 0:
     player.change_state("idle")

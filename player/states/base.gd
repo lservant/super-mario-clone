@@ -1,11 +1,11 @@
 extends Node
 class_name PlayerStateBase
 
-@onready var player : Player = get_parent().get_parent()
-var state : String
+@onready var player: Player = get_parent().get_parent()
+var state: String
 
 func reset():
-  player.anim.play(state)
+  player.anim_movement.play(state)
 
 func handle_horizontal(delta: float):
   var target_speed = 0.0
@@ -27,4 +27,3 @@ func handle_jump(delta: float):
   if Input.is_action_just_pressed("jump"):
     player.velocity.y = -player.jump_height * 500 * delta
     player.change_state("jump")
-  

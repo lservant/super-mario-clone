@@ -1,7 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var anim : AnimationPlayer = $AnimationPlayer
+@onready var anim_movement : AnimationPlayer = $anim_movement
+@onready var anim_transform : AnimationPlayer = $anim_transform
+@onready var anim_hit : AnimationPlayer = $anim_hit
 
 const accel = 100.0
 const max_walk = 100.0
@@ -21,6 +23,9 @@ var current_state: String
 var is_running: bool = false
 var is_jumping: bool = false
 var is_big: bool = false
+
+var is_immune: bool = false
+var immune_time: float = 3.0
 
 func _ready() -> void:
   change_state("idle")
@@ -46,14 +51,19 @@ func update_direction():
 
 func grow():
   if !is_big:
-    anim.play("grow")
+    anim_transform.play("grow")
     is_big = true
 
 func hit():
-  
+  if is_immune:
+    return
+  is_immune = true
   if is_big:
-    anim.play_backwards("grow")
+    anim_transform.play_backwards("grow")
     is_big = false
+    await get_tree().create_timer(immune_time).timeout
+    anim_hit.stop()
+    is_immune = false
   else:
     get_tree().reload_current_scene()
 
@@ -66,3 +76,7 @@ func change_state(new_state: String):
     var state = states.get_child(i)
     if new_state == state.name:
       state.reset()
+
+func _on_anim_transform_animation_finished(anim_name: StringName) -> void:
+  if anim_name == "grow" and is_immune:
+    anim_hit.play("hit")
