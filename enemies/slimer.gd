@@ -44,7 +44,11 @@ func change_direction():
 func die():
   queue_free()
 
+var is_stomped = false
+
 func _on_collider_hit_body_entered(body:Node2D) -> void:
+  if is_stomped:
+    return
   if body.name != "player":
     return
   
