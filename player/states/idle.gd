@@ -11,5 +11,7 @@ func _physics_process(delta: float) -> void:
     player.change_state("walk")
   if Input.is_action_pressed("move_left"):
     player.change_state("walk")
+  if player.velocity.y > 0:
+    player.change_state("fall")
   handle_jump(delta)
   player.velocity.x = lerp(player.velocity.x, 0.0, player.friction)
