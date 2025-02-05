@@ -50,6 +50,7 @@ func grow():
     is_big = true
 
 func hit():
+  
   if is_big:
     anim.play_backwards("grow")
     is_big = false

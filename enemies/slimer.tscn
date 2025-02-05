@@ -51,6 +51,8 @@ size = Vector2(16, 13)
 size = Vector2(12, 2.5)
 
 [node name="slimer" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource("1_ec1ye")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -72,6 +74,7 @@ autoplay = "move"
 
 [node name="collider_hit" type="Area2D" parent="."]
 position = Vector2(0, -7.25)
+collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collider_hit"]
@@ -81,6 +84,7 @@ debug_color = Color(0.998559, 0, 0.138814, 0.42)
 
 [node name="collider_stomp" type="Area2D" parent="."]
 position = Vector2(0, -7)
+collision_layer = 8
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collider_stomp"]
