@@ -297,6 +297,7 @@ tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAE
 tile_set = SubResource("TileSet_y3rt1")
 
 [node name="template" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1792, 120)
 texture = ExtResource("3_vi8yl")
 
