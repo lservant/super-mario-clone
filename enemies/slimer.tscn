@@ -1,47 +1,91 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdkdbdo8rlvxa"]
+[gd_scene load_steps=9 format=3 uid="uid://cdkdbdo8rlvxa"]
 
+[ext_resource type="Script" path="res://enemies/slimer.gd" id="1_ec1ye"]
 [ext_resource type="Texture2D" uid="uid://cm1nhih748qcp" path="res://assets/objects.png" id="1_u4ol8"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7lvjq"]
-atlas = ExtResource("1_u4ol8")
-region = Rect2(0, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7yxxn"]
-atlas = ExtResource("1_u4ol8")
-region = Rect2(16, 32, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1yh12"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7lvjq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7yxxn")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ra5li"]
 size = Vector2(12, 13)
 
+[sub_resource type="Animation" id="Animation_xl3kb"]
+resource_name = "move"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_our6w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4iql4"]
+_data = {
+"RESET": SubResource("Animation_our6w"),
+"move": SubResource("Animation_xl3kb")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_235m3"]
+size = Vector2(16, 13)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6kvjh"]
-size = Vector2(12, 1)
+size = Vector2(12, 2.5)
 
 [node name="slimer" type="CharacterBody2D"]
-position = Vector2(360, 200)
+script = ExtResource("1_ec1ye")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(-1, 1)
-sprite_frames = SubResource("SpriteFrames_1yh12")
-autoplay = "default"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u4ol8")
+hframes = 5
+vframes = 4
+frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_ra5li")
 
-[node name="collider_stomp" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -8)
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_4iql4")
+}
+autoplay = "move"
+
+[node name="collider_hit" type="Area2D" parent="."]
+position = Vector2(0, -7.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider_hit"]
+position = Vector2(0, 9.75)
+shape = SubResource("RectangleShape2D_235m3")
+debug_color = Color(0.998559, 0, 0.138814, 0.42)
+
+[node name="collider_stomp" type="Area2D" parent="."]
+position = Vector2(0, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider_stomp"]
 shape = SubResource("RectangleShape2D_6kvjh")
+
+[node name="ray_wallcheck" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+
+[connection signal="body_entered" from="collider_hit" to="." method="_on_collider_hit_body_entered"]
+[connection signal="body_entered" from="collider_stomp" to="." method="_on_collider_stomp_body_entered"]

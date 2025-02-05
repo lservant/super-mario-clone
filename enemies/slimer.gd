@@ -4,11 +4,13 @@ extends Item
 @export var speed = 5
 
 @onready var collider = $CollisionShape2D
-@onready var wallray_collider = $wall_ray
+@onready var wallray_collider = $ray_wallcheck
+@onready var sprite = $Sprite2D
 
 func _ready() -> void:
   if direction == DIRECTION.LEFT:
     speed = -speed
+    sprite.flip_h = true
 
 func _physics_process(delta: float) -> void:
   if collider.disabled:
@@ -21,17 +23,25 @@ func _physics_process(delta: float) -> void:
     direction = (direction + 1) % 2
     wallray_collider.target_position.x = -wallray_collider.target_position.x
     speed *= -1
-  
+    sprite.flip_h = !sprite.flip_h
+    
   velocity.x = speed * 500 * delta
   move_and_slide()
 
-func toggle_physics(enabled: bool):
-  collider.disabled = !enabled
+func die():
+  queue_free()
 
-func _on_pickup_zone_body_entered(body: Node2D) -> void:
+func _on_collider_hit_body_entered(body:Node2D) -> void:
   if body.name != "player":
     return
   
   var player: Player = body
-  player.grow()
-  queue_free()
+  player.hit()
+
+
+func _on_collider_stomp_body_entered(body:Node2D) -> void:
+  if body.name != "player":
+    return
+  
+  var player: Player = body
+  die()
