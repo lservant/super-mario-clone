@@ -289,11 +289,13 @@ libraries = {
 }
 
 [node name="anim_transform" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_yxggg")
 }
 
 [node name="anim_hit" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_a3vya")
 }

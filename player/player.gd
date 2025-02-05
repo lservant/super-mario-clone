@@ -51,12 +51,14 @@ func update_direction():
 
 func grow():
   if !is_big:
+    get_tree().paused = true
     anim_transform.play("grow")
     is_big = true
 
 func hit():
   if is_immune:
     return
+  get_tree().paused = true
   is_immune = true
   if is_big:
     anim_transform.play_backwards("grow")
@@ -78,5 +80,9 @@ func change_state(new_state: String):
       state.reset()
 
 func _on_anim_transform_animation_finished(anim_name: StringName) -> void:
-  if anim_name == "grow" and is_immune:
-    anim_hit.play("hit")
+  if anim_name == "grow":
+    if is_immune:
+      anim_hit.play("hit")
+    get_tree().paused = false
+    
+  

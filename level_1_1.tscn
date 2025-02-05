@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b4ad07mh7alst"]
+[gd_scene load_steps=15 format=4 uid="uid://b4ad07mh7alst"]
 
 [ext_resource type="Script" path="res://level_1_1.gd" id="1_e43rk"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="1_viccv"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://dge7fnxrkheod" path="res://blocks/itemblock.tscn" id="5_prbxd"]
 [ext_resource type="PackedScene" uid="uid://dxxul4cieia5l" path="res://player/player.tscn" id="7_6deqd"]
 [ext_resource type="PackedScene" uid="uid://cdkdbdo8rlvxa" path="res://enemies/slimer.tscn" id="9_sbgu7"]
-[ext_resource type="PackedScene" uid="uid://cucaivogh5ds8" path="res://items/big_orb.tscn" id="10_dx7xc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4cux"]
 texture = ExtResource("2_yxrcs")
@@ -444,7 +443,7 @@ coins = 0
 [node name="slimers" type="Node" parent="enemies"]
 
 [node name="slimer" parent="enemies/slimers" instance=ExtResource("9_sbgu7")]
-position = Vector2(216, 200)
+position = Vector2(360, 200)
 direction = 0
 
 [node name="slimer2" parent="enemies/slimers" instance=ExtResource("9_sbgu7")]
@@ -499,9 +498,7 @@ position = Vector2(2080, 200)
 direction = 0
 
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(41, 192)
-collision_layer = 2
-collision_mask = 3
+position = Vector2(41, 208)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(89, 168)
@@ -514,7 +511,8 @@ target = NodePath("../player")
 
 [node name="bound_left" type="StaticBody2D" parent="Camera2D"]
 position = Vector2(-100, -2)
-collision_layer = 2
+collision_layer = 128
+collision_mask = 2
 physics_material_override = SubResource("PhysicsMaterial_02aah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/bound_left"]
@@ -526,7 +524,3 @@ physics_material_override = SubResource("PhysicsMaterial_02aah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bound_bottom"]
 shape = SubResource("WorldBoundaryShape2D_ji1sy")
-
-[node name="big_orb" parent="." instance=ExtResource("10_dx7xc")]
-position = Vector2(129, 192)
-direction = 0
