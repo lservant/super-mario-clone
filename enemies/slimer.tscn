@@ -72,6 +72,7 @@ autoplay = "move"
 
 [node name="collider_hit" type="Area2D" parent="."]
 position = Vector2(0, -7.25)
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collider_hit"]
 position = Vector2(0, 9.75)
@@ -80,6 +81,7 @@ debug_color = Color(0.998559, 0, 0.138814, 0.42)
 
 [node name="collider_stomp" type="Area2D" parent="."]
 position = Vector2(0, -7)
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collider_stomp"]
 shape = SubResource("RectangleShape2D_6kvjh")
@@ -87,5 +89,9 @@ shape = SubResource("RectangleShape2D_6kvjh")
 [node name="ray_wallcheck" type="RayCast2D" parent="."]
 target_position = Vector2(10, 0)
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="body_entered" from="collider_hit" to="." method="_on_collider_hit_body_entered"]
 [connection signal="body_entered" from="collider_stomp" to="." method="_on_collider_stomp_body_entered"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
