@@ -22,3 +22,8 @@ func _process(delta: float) -> void:
     
   camera.limit_left = left_boundary
     
+
+func _on_bound_bottom_body_entered(body: Node2D) -> void:
+  if body.name != "player":
+    return
+  get_tree().reload_current_scene()

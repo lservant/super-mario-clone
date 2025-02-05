@@ -518,9 +518,12 @@ physics_material_override = SubResource("PhysicsMaterial_02aah")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/bound_left"]
 shape = SubResource("WorldBoundaryShape2D_0xuse")
 
-[node name="bound_bottom" type="StaticBody2D" parent="."]
+[node name="bound_bottom" type="Area2D" parent="."]
 position = Vector2(124, 246)
-physics_material_override = SubResource("PhysicsMaterial_02aah")
+collision_layer = 128
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bound_bottom"]
 shape = SubResource("WorldBoundaryShape2D_ji1sy")
+
+[connection signal="body_entered" from="bound_bottom" to="." method="_on_bound_bottom_body_entered"]
