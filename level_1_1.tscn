@@ -449,6 +449,12 @@ position = Vector2(1512, 152)
 coins = 10
 is_secret = true
 
+[node name="secretItemBlock2" parent="blocks/itemblocks" instance=ExtResource("5_prbxd")]
+position = Vector2(1624, 152)
+item_path = "res://items/flashy_orb.tscn"
+coins = 0
+is_secret = true
+
 [node name="enemies" type="Node" parent="."]
 
 [node name="slimers" type="Node" parent="enemies"]
@@ -517,10 +523,10 @@ position = Vector2(2816, 200)
 direction = 0
 
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(1505, 208)
+position = Vector2(33, 208)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(89, 168)
+position = Vector2(97, 168)
 limit_left = 0
 limit_top = 0
 limit_bottom = -260
