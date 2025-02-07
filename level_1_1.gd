@@ -27,3 +27,7 @@ func _on_bound_bottom_body_entered(body: Node2D) -> void:
   if body.name != "player":
     return
   get_tree().reload_current_scene()
+
+
+func _on_timer_timeout() -> void:
+  Game.countdown_time()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b4ad07mh7alst"]
+[gd_scene load_steps=16 format=4 uid="uid://b4ad07mh7alst"]
 
 [ext_resource type="Script" path="res://level_1_1.gd" id="1_e43rk"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="1_viccv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dge7fnxrkheod" path="res://blocks/itemblock.tscn" id="5_prbxd"]
 [ext_resource type="PackedScene" uid="uid://dxxul4cieia5l" path="res://player/player.tscn" id="7_6deqd"]
 [ext_resource type="PackedScene" uid="uid://cdkdbdo8rlvxa" path="res://enemies/slimer.tscn" id="9_sbgu7"]
+[ext_resource type="PackedScene" uid="uid://bmv5lp3gw0mu6" path="res://ui.tscn" id="10_8qy0n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4cux"]
 texture = ExtResource("2_yxrcs")
@@ -297,7 +298,7 @@ tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAE
 tile_set = SubResource("TileSet_y3rt1")
 
 [node name="template" type="Sprite2D" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0.482353)
 position = Vector2(1792, 120)
 texture = ExtResource("3_vi8yl")
 
@@ -438,6 +439,16 @@ position = Vector2(1752, 88)
 item_path = "res://items/big_orb.tscn"
 coins = 0
 
+[node name="hiddenItemBlock" parent="blocks/itemblocks" instance=ExtResource("5_prbxd")]
+position = Vector2(1032, 136)
+item_path = "res://items/life_orb.tscn"
+is_hidden = true
+
+[node name="secretItemBlock" parent="blocks/itemblocks" instance=ExtResource("5_prbxd")]
+position = Vector2(1512, 152)
+coins = 10
+is_secret = true
+
 [node name="enemies" type="Node" parent="."]
 
 [node name="slimers" type="Node" parent="enemies"]
@@ -497,8 +508,16 @@ direction = 0
 position = Vector2(2080, 200)
 direction = 0
 
+[node name="slimer15" parent="enemies/slimers" instance=ExtResource("9_sbgu7")]
+position = Vector2(2792, 200)
+direction = 0
+
+[node name="slimer16" parent="enemies/slimers" instance=ExtResource("9_sbgu7")]
+position = Vector2(2816, 200)
+direction = 0
+
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(41, 208)
+position = Vector2(1505, 208)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(89, 168)
@@ -526,4 +545,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bound_bottom"]
 shape = SubResource("WorldBoundaryShape2D_ji1sy")
 
+[node name="Ui" parent="." instance=ExtResource("10_8qy0n")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+
 [connection signal="body_entered" from="bound_bottom" to="." method="_on_bound_bottom_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
