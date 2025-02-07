@@ -54,7 +54,7 @@ func _on_collider_hit_body_entered(body:Node2D) -> void:
     return
   print("hit")
   var player: Player = body
-  player.hit()
+  player.hit(self)
 
 
 func _on_collider_stomp_body_entered(body:Node2D) -> void:

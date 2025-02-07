@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dxxul4cieia5l"]
+[gd_scene load_steps=22 format=3 uid="uid://dxxul4cieia5l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ute0i"]
 [ext_resource type="Texture2D" uid="uid://84vy6iw53yic" path="res://assets/bario_small.png" id="2_dem26"]
@@ -248,9 +248,39 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_3que3"]
+resource_name = "flashy"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("small_sprite:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 0.987667, 0.63, 1), Color(0.47, 1, 0.593667, 1), Color(1, 0.47, 0.938167, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("big_sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(1, 0.987667, 0.63, 1), Color(0.47, 1, 0.593667, 1), Color(1, 0.47, 0.938167, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a3vya"]
 _data = {
 "RESET": SubResource("Animation_skctu"),
+"flashy": SubResource("Animation_3que3"),
 "hit": SubResource("Animation_v2doa")
 }
 
@@ -258,6 +288,15 @@ _data = {
 collision_layer = 2
 collision_mask = 129
 script = ExtResource("1_ute0i")
+
+[node name="small_collider" type="CollisionShape2D" parent="."]
+position = Vector2(8, -7.5)
+shape = SubResource("RectangleShape2D_nyrad")
+
+[node name="big_collider" type="CollisionShape2D" parent="."]
+position = Vector2(8, -15.75)
+shape = SubResource("RectangleShape2D_k5abh")
+disabled = true
 
 [node name="small_sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_dem26")
@@ -267,21 +306,12 @@ hframes = 3
 frame = 1
 region_rect = Rect2(0, 0, 16, 16)
 
-[node name="small_collider" type="CollisionShape2D" parent="."]
-position = Vector2(8, -7.5)
-shape = SubResource("RectangleShape2D_nyrad")
-
 [node name="big_sprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("3_upc0s")
 centered = false
 offset = Vector2(0, -32)
 hframes = 3
-
-[node name="big_collider" type="CollisionShape2D" parent="."]
-position = Vector2(8, -15.75)
-shape = SubResource("RectangleShape2D_k5abh")
-disabled = true
 
 [node name="anim_movement" type="AnimationPlayer" parent="."]
 libraries = {

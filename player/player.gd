@@ -23,9 +23,11 @@ var current_state: String
 var is_running: bool = false
 var is_jumping: bool = false
 var is_big: bool = false
-
 var is_immune: bool = false
+var is_flashy: bool = false
+
 var immune_time: float = 3.0
+var flashy_time: float = 10.0
 
 func _ready() -> void:
   change_state("idle")
@@ -55,7 +57,10 @@ func grow():
     anim_transform.play("grow")
     is_big = true
 
-func hit():
+func hit(enemy: Node2D):
+  if is_flashy:
+    enemy.die()
+    return
   if is_immune:
     return
   get_tree().paused = true
@@ -68,6 +73,15 @@ func hit():
     is_immune = false
   else:
     get_tree().reload_current_scene()
+
+func be_flashy():
+  is_flashy = true
+  is_immune = true
+  anim_hit.play("flashy")
+  await get_tree().create_timer(flashy_time).timeout
+  anim_hit.stop()
+  is_immune = false
+  is_flashy = false
 
 func change_state(new_state: String):
   print("Changing state ", current_state, ", ", new_state)
