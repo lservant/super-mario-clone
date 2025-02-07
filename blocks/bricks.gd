@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
+@onready var collider: CollisionShape2D = $CollisionShape2D
 
 func _on_underside_body_entered(body: Node2D) -> void:
   if body.name != "player":
@@ -17,4 +18,11 @@ func bounce():
   anim.play("bounce")
 
 func destroy():
-  pass
+  collider.disabled = true
+  anim.play("destroy")
+  Game.add_score(50)
+
+
+func _on_animation_player_animation_finished(anim_name:StringName) -> void:
+  if anim_name == "destroy":
+    queue_free()

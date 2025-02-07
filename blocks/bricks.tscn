@@ -65,7 +65,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_7ppwa"]
-resource_name = "break"
+resource_name = "destroy"
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,7 +111,7 @@ tracks/1/keys = {
 _data = {
 "RESET": SubResource("Animation_lhedt"),
 "bounce": SubResource("Animation_vlr1p"),
-"break": SubResource("Animation_7ppwa"),
+"destroy": SubResource("Animation_7ppwa"),
 "idle": SubResource("Animation_1kyig")
 }
 
@@ -141,3 +142,4 @@ libraries = {
 }
 
 [connection signal="body_entered" from="underside" to="." method="_on_underside_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
