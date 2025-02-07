@@ -43,6 +43,7 @@ func _on_underside_body_entered(body: Node2D) -> void:
     block.frame = EMPTY_FRAME
     
 func give_item():
+  has_item = false
   var item: Item = item_scene.instantiate()
   var item_tween = item.create_tween()
   item.position = position
@@ -51,7 +52,6 @@ func give_item():
   item.toggle_physics(false)
   await item_tween.tween_property(item, "position:y", item.position.y-20, 0.5).finished
   item.toggle_physics(true)
-  has_item = false
   
 func give_coin():
   anim.play("give_coin")

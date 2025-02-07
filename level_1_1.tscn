@@ -298,6 +298,7 @@ tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAE
 tile_set = SubResource("TileSet_y3rt1")
 
 [node name="template" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.482353)
 position = Vector2(1792, 120)
 texture = ExtResource("3_vi8yl")
@@ -552,6 +553,7 @@ collision_mask = 2
 shape = SubResource("WorldBoundaryShape2D_ji1sy")
 
 [node name="Ui" parent="." instance=ExtResource("10_8qy0n")]
+process_mode = 3
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
