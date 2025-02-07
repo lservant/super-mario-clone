@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://ffwdmn5yhq1h"]
+
+[ext_resource type="Script" path="res://items/life_orb.gd" id="1_2krv8"]
+[ext_resource type="Texture2D" uid="uid://cm1nhih748qcp" path="res://assets/objects.png" id="2_sm633"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jnj4"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_cp8an"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2d:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [14, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_40v8u"]
+_data = {
+"idle": SubResource("Animation_cp8an")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21hxf"]
+size = Vector2(16, 16)
+
+[node name="life_orb" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_2krv8")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+texture = ExtResource("2_sm633")
+hframes = 5
+vframes = 4
+frame = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1jnj4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_40v8u")
+}
+autoplay = "idle"
+
+[node name="wall_ray" type="RayCast2D" parent="."]
+target_position = Vector2(12, 0)
+
+[node name="pickup_zone" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_zone"]
+shape = SubResource("RectangleShape2D_21hxf")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="pickup_zone" to="." method="_on_pickup_zone_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
