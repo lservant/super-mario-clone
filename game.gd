@@ -30,3 +30,9 @@ func countdown_time():
 
 func game_over():
     print("Game Over")
+
+func pause_game():
+    get_tree().paused = true
+  
+func resume_game():
+    get_tree().paused = false

@@ -13,6 +13,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
   update_ui()
 
+  if Input.is_action_just_pressed("pause"):
+    if get_tree().paused:
+      Game.resume_game()
+    else:
+      Game.pause_game()
+
 func update_ui() -> void:
   time_label.text = str(Game.time).pad_zeros(3)
   score_label.text = str(Game.score).pad_zeros(6)
