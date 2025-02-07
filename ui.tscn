@@ -1,0 +1,90 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmv5lp3gw0mu6"]
+
+[ext_resource type="Script" path="res://ui.gd" id="1_14bqc"]
+[ext_resource type="FontFile" uid="uid://byv4w3tts1ykn" path="res://assets/PublicPixel-rv0pA.ttf" id="1_j5lyi"]
+[ext_resource type="Texture2D" uid="uid://cm1nhih748qcp" path="res://assets/objects.png" id="1_uof30"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_tqav8"]
+line_spacing = 0.0
+font = ExtResource("1_j5lyi")
+font_size = 8
+
+[node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_14bqc")
+
+[node name="Time" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 16.0
+offset_right = 240.0
+offset_bottom = 39.0
+text = "Time"
+label_settings = SubResource("LabelSettings_tqav8")
+horizontal_alignment = 2
+uppercase = true
+
+[node name="TimeVal" type="Label" parent="."]
+offset_left = 200.0
+offset_top = 24.0
+offset_right = 240.0
+offset_bottom = 47.0
+text = "399"
+label_settings = SubResource("LabelSettings_tqav8")
+horizontal_alignment = 2
+uppercase = true
+
+[node name="World" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 16.0
+offset_right = 196.0
+offset_bottom = 50.0
+text = "World"
+label_settings = SubResource("LabelSettings_tqav8")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="WorldVal" type="Label" parent="."]
+offset_left = 152.0
+offset_top = 24.0
+offset_right = 196.0
+offset_bottom = 58.0
+text = "1-1"
+label_settings = SubResource("LabelSettings_tqav8")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="PlayerName" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 68.0
+offset_bottom = 50.0
+text = "Bario"
+label_settings = SubResource("LabelSettings_tqav8")
+uppercase = true
+
+[node name="ScoreVal" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 72.0
+offset_bottom = 58.0
+text = "000000"
+label_settings = SubResource("LabelSettings_tqav8")
+uppercase = true
+
+[node name="CoinGroup" type="Node2D" parent="."]
+position = Vector2(96, 24)
+
+[node name="Coins" type="Label" parent="CoinGroup"]
+offset_right = 32.0
+offset_bottom = 22.0
+text = "x00"
+label_settings = SubResource("LabelSettings_tqav8")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="coin" type="Sprite2D" parent="CoinGroup"]
+position = Vector2(0, 4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_uof30")
+hframes = 5
+vframes = 4
+frame = 4
