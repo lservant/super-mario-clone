@@ -42,6 +42,7 @@ func change_direction():
   sprite.flip_h = !sprite.flip_h
 
 func die():
+  Game.add_score(100)
   queue_free()
 
 var is_stomped = false

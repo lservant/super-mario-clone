@@ -33,5 +33,6 @@ func _on_pickup_zone_body_entered(body: Node2D) -> void:
     return
   
   var player: Player = body
+  Game.add_score(1000)
   player.grow()
   queue_free()
