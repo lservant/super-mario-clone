@@ -30,6 +30,7 @@ func _on_underside_body_entered(body: Node2D) -> void:
     return
   
   var player: Player = body
+  player.change_state("fall")
   
   if not is_empty():
     bounce()
