@@ -8,6 +8,9 @@ extends Item
 @onready var sprite = $Sprite2D
 
 var is_moving = false
+var is_stomped = false
+var is_hitting_player = false
+var player: Player
 
 func _ready() -> void:
   if direction == DIRECTION.LEFT:
@@ -17,6 +20,13 @@ func _physics_process(delta: float) -> void:
   if collider.disabled or not is_moving:
     return
 
+  if is_stomped:
+    get_stomped()
+    return
+  if is_hitting_player:
+    hit()
+    return
+  
   # Add the gravity.
   if not is_on_floor():
     velocity += get_gravity() * delta
@@ -45,28 +55,27 @@ func die():
   Game.add_score(100)
   queue_free()
 
-var is_stomped = false
-
-func _on_collider_hit_body_entered(body:Node2D) -> void:
-  if is_stomped:
-    return
-  if body.name != "player":
-    return
-  print("hit")
-  var player: Player = body
+func hit() -> void:
   player.hit(self)
+  is_hitting_player = false
 
+func get_stomped():
+  player.change_state("bounce")
+  die()
 
-func _on_collider_stomp_body_entered(body:Node2D) -> void:
+func _on_collider_hit_body_entered(body: Node2D) -> void:
   if body.name != "player":
     return
-  var player: Player = body
-  if player.current_state == "fall" or player.current_state == "jump":
-    print("stomp")
-    is_stomped = true
-    player.change_state("bounce")
-    die()
+  
+  player = body
+  is_hitting_player = true
 
+func _on_collider_stomp_body_entered(body: Node2D) -> void:
+  if body.name != "player":
+    return
+  player = body
+  if player.current_state == "fall" or player.current_state == "jump":
+    is_stomped = true
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
   start_moving()
