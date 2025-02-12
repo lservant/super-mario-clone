@@ -1,11 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfg4ocshobkyl"]
+[gd_scene load_steps=12 format=3 uid="uid://bfg4ocshobkyl"]
 
 [ext_resource type="Script" path="res://sound_manager.gd" id="1_tqrxa"]
 [ext_resource type="AudioStream" uid="uid://c72p3nag1nlfp" path="res://assets/audio/coin.wav" id="2_gbvff"]
+[ext_resource type="AudioStream" uid="uid://c87ybp06n31ev" path="res://assets/audio/bricksplosion.wav" id="3_ltglo"]
+[ext_resource type="AudioStream" uid="uid://bgs2ch1etx1tj" path="res://assets/audio/extralife.wav" id="4_30gvy"]
+[ext_resource type="AudioStream" uid="uid://d0rxcljlvxolx" path="res://assets/audio/jump2.wav" id="5_dyj0p"]
+[ext_resource type="AudioStream" uid="uid://c4ces12epcwsr" path="res://assets/audio/powerup.wav" id="6_t5m8f"]
+[ext_resource type="AudioStream" uid="uid://bs7fve15a8u0c" path="res://assets/audio/squish.wav" id="7_ybo5x"]
+[ext_resource type="AudioStream" uid="uid://5lctgwpb7c4t" path="res://assets/audio/ascending.wav" id="8_e5lc7"]
+[ext_resource type="AudioStream" uid="uid://bycg6icwutgyb" path="res://assets/audio/hit.wav" id="9_vu84w"]
+[ext_resource type="AudioStream" uid="uid://d4l08uw0j8qxe" path="res://assets/audio/thud.wav" id="10_cot6e"]
+[ext_resource type="AudioStream" uid="uid://dd5q5pauy1ti6" path="res://assets/audio/music.wav" id="11_jxa8c"]
 
 [node name="SoundManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_tqrxa")
 
-[node name="coin" type="AudioStreamPlayer" parent="."]
+[node name="sounds" type="Node" parent="."]
+
+[node name="coin" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("2_gbvff")
 volume_db = -20.0
+
+[node name="bricksplosion" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("3_ltglo")
+volume_db = -20.0
+
+[node name="extralife" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("4_30gvy")
+volume_db = -20.0
+
+[node name="jump" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("5_dyj0p")
+
+[node name="grow" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("6_t5m8f")
+volume_db = -20.0
+
+[node name="stomp" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("7_ybo5x")
+volume_db = -10.0
+
+[node name="item" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("8_e5lc7")
+volume_db = -20.0
+
+[node name="hit" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("9_vu84w")
+volume_db = -20.0
+
+[node name="thud" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("10_cot6e")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+process_mode = 1
+stream = ExtResource("11_jxa8c")
+volume_db = -20.0
+autoplay = true
