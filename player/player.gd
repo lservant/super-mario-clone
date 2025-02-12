@@ -52,10 +52,10 @@ func update_direction():
     $big_sprite.flip_h = true
 
 func grow():
+  SoundManager.play_grow()
   if !is_big:
     get_tree().paused = true
     anim_transform.play("grow")
-    SoundManager.play_grow()
     is_big = true
 
 func hit(enemy: Node2D):
