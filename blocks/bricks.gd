@@ -2,6 +2,20 @@ extends StaticBody2D
 
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var collider: CollisionShape2D = $CollisionShape2D
+@onready var sprite: Sprite2D = $Sprite2D
+
+@export var dark = false
+
+const BASE_FRAME = 1
+const DESTROY_FRAME = 0
+const BASE_FRAME_DARK = 6
+const DESTROY_FRAME_DARK = 5
+
+func _ready() -> void:
+  if dark:
+    sprite.frame = BASE_FRAME_DARK
+  else:
+    sprite.frame = BASE_FRAME
 
 func _on_underside_body_entered(body: Node2D) -> void:
   if body.name != "player":
@@ -19,10 +33,9 @@ func bounce():
 
 func destroy():
   collider.disabled = true
-  anim.play("destroy")
   Game.add_score(50)
-
-
-func _on_animation_player_animation_finished(anim_name:StringName) -> void:
-  if anim_name == "destroy":
-    queue_free()
+  if dark:
+    sprite.frame = DESTROY_FRAME_DARK
+  else:
+    sprite.frame = DESTROY_FRAME
+  await get_tree().create_timer(0.4).timeout

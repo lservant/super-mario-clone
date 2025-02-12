@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://b4ad07mh7alst"]
+[gd_scene load_steps=17 format=4 uid="uid://b4ad07mh7alst"]
 
 [ext_resource type="Script" path="res://level_1_1.gd" id="1_e43rk"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="1_viccv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://cam_player.gd" id="4_idvxg"]
 [ext_resource type="PackedScene" uid="uid://dge7fnxrkheod" path="res://blocks/itemblock.tscn" id="5_prbxd"]
 [ext_resource type="PackedScene" uid="uid://dxxul4cieia5l" path="res://player/player.tscn" id="7_6deqd"]
+[ext_resource type="PackedScene" uid="uid://dkafyvxk33hjk" path="res://items/coin.tscn" id="8_1457j"]
 [ext_resource type="PackedScene" uid="uid://cdkdbdo8rlvxa" path="res://enemies/slimer.tscn" id="9_sbgu7"]
 [ext_resource type="PackedScene" uid="uid://bmv5lp3gw0mu6" path="res://ui.tscn" id="10_8qy0n"]
 
@@ -294,11 +295,10 @@ tile_set = ExtResource("1_viccv")
 
 [node name="tilemap_underground" type="TileMapLayer" parent="."]
 position = Vector2(1792, 120)
-tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAEAAADfAAsAAAABAAMAAADeAA4AAAABAAEAAADeAA0AAAABAAEAAADeAAwAAAABAAEAAADeAAsAAAABAAMAAADdAA4AAAABAAEAAADdAA0AAAABAAEAAADdAAwAAAABAAEAAADdAAsAAAAAAAMAAADcAA4AAAABAAEAAADcAA0AAAABAAEAAADcAAwAAAABAAEAAADcAAsAAAABAAAAAADbAA4AAAABAAEAAADbAA0AAAABAAEAAADbAAwAAAABAAEAAADbAAsAAAABAAAAAADaAA4AAAABAAEAAADaAA0AAAABAAEAAADaAAwAAAABAAEAAADaAAsAAAABAAAAAADZAA4AAAABAAEAAADZAA0AAAABAAEAAADZAAwAAAABAAEAAADZAAsAAAACAAMAAADYAA4AAAABAAEAAADYAA0AAAABAAEAAADYAAwAAAABAAEAAADYAAsAAAACAAMAAADXAA4AAAABAAEAAADXAA0AAAABAAEAAADXAAwAAAABAAEAAADXAAsAAAACAAMAAADWAA4AAAABAAEAAADWAA0AAAABAAEAAADWAAwAAAABAAEAAADWAAsAAAACAAMAAADVAA4AAAABAAEAAADVAA0AAAABAAEAAADVAAwAAAABAAEAAADVAAsAAAABAAAAAADUAA4AAAABAAEAAADUAA0AAAABAAEAAADUAAwAAAABAAEAAADUAAsAAAAAAAMAAADTAA4AAAABAAEAAADTAA0AAAABAAEAAADTAAwAAAABAAEAAADTAAsAAAABAAAAAADSAA4AAAABAAEAAADSAA0AAAABAAEAAADSAAwAAAABAAEAAADSAAsAAAACAAMAAADRAA4AAAABAAEAAADRAA0AAAABAAEAAADRAAwAAAABAAEAAADRAAsAAAABAAAAAADQAA4AAAABAAEAAADQAA0AAAABAAEAAADQAAwAAAABAAEAAADQAAsAAAACAAMAAADPAA4AAAABAAEAAADPAA0AAAABAAEAAADPAAwAAAABAAEAAADPAAsAAAABAAMAAADOAA4AAAABAAEAAADOAA0AAAABAAEAAADOAAwAAAABAAEAAADOAAsAAAAAAAMAAADNAA4AAAABAAEAAADNAA0AAAABAAEAAADNAAwAAAABAAEAAADNAAsAAAAAAAMAAADMAA4AAAABAAEAAADMAA0AAAABAAEAAADMAAwAAAABAAEAAADMAAsAAAABAAAAAADLAA4AAAABAAEAAADLAA0AAAABAAEAAADLAAwAAAABAAEAAADLAAsAAAABAAAAAADKAA4AAAABAAEAAADKAA0AAAABAAEAAADKAAwAAAABAAEAAADKAAsAAAACAAMAAADJAA4AAAABAAEAAADJAA0AAAABAAEAAADJAAwAAAABAAEAAADJAAsAAAABAAMAAADIAA4AAAABAAEAAADIAA0AAAABAAEAAADIAAwAAAABAAEAAADIAAsAAAACAAMAAADHAA4AAAABAAEAAADHAA0AAAABAAEAAADHAAwAAAABAAEAAADHAAsAAAACAAMAAADGAA4AAAABAAEAAADGAA0AAAABAAEAAADGAAwAAAABAAEAAADGAAsAAAABAAMAAADFAA4AAAABAAEAAADFAA0AAAABAAEAAADFAAwAAAABAAEAAADFAAsAAAACAAMAAADEAA4AAAABAAEAAADEAA0AAAABAAEAAADEAAwAAAABAAEAAADEAAsAAAAAAAMAAADDAA4AAAABAAEAAADDAA0AAAABAAEAAADDAAwAAAABAAEAAADDAAsAAAABAAAAAADCAA4AAAABAAEAAADCAA0AAAABAAEAAADCAAwAAAABAAEAAADCAAsAAAACAAMAAADBAA4AAAABAAEAAADBAA0AAAABAAEAAADBAAwAAAABAAEAAADBAAsAAAADAAEAAADAAA4AAAABAAEAAADAAA0AAAABAAEAAADAAAwAAAABAAEAAADAAAsAAAABAAEAAADBAAoAAAACAAEAAADBAAkAAAAEAAQAAADBAAgAAAACAAEAAADBAAcAAAAEAAMAAADBAAYAAAACAAEAAADBAAUAAAAEAAMAAADBAAQAAAAEAAMAAADBAAMAAAAEAAIAAADBAAIAAAACAAEAAADBAAEAAAACAAEAAADBAAAAAAAEAAMAAADBAP//AAAEAAIAAADBAP7/AAACAAEAAADBAP3/AAACAAEAAADBAPz/AAACAAEAAADBAPv/AAAEAAQAAADAAAoAAAABAAEAAADAAAkAAAABAAEAAADAAAgAAAABAAEAAADAAAcAAAABAAEAAADAAAYAAAABAAEAAADAAAUAAAABAAEAAADAAAQAAAABAAEAAADAAAMAAAABAAEAAADAAAIAAAABAAEAAADAAAEAAAABAAEAAADAAAAAAAABAAEAAADAAP//AAABAAEAAADAAP7/AAABAAEAAADAAP3/AAABAAEAAADAAPz/AAABAAEAAADAAPv/AAABAAEAAADBAPr/AAAEAAQAAADBAPn/AAACAAEAAADBAPj/AAAEAAMAAADBAPf/AAAEAAIAAADBAPb/AAAEAAIAAADBAPX/AAACAAAAAADAAPr/AAABAAEAAADAAPn/AAABAAEAAADAAPj/AAABAAEAAADAAPf/AAABAAEAAADAAPb/AAABAAEAAADAAPX/AAAAAAMAAADVAPb/AAACAAIAAADVAPX/AAACAAAAAADUAPb/AAAAAAQAAADUAPX/AAABAAMAAADTAPb/AAABAAIAAADTAPX/AAABAAMAAADSAPb/AAACAAQAAADSAPX/AAAAAAMAAADRAPb/AAABAAIAAADRAPX/AAACAAMAAADQAPb/AAAAAAQAAADQAPX/AAABAAAAAADPAPb/AAAAAAQAAADPAPX/AAAAAAMAAADOAPb/AAAAAAQAAADOAPX/AAABAAAAAADNAPb/AAACAAQAAADNAPX/AAABAAAAAADMAPb/AAAAAAQAAADMAPX/AAACAAMAAADLAPb/AAAAAAQAAADLAPX/AAABAAMAAADKAPb/AAABAAQAAADKAPX/AAABAAAAAADJAPb/AAACAAQAAADJAPX/AAAAAAMAAADIAPb/AAAAAAIAAADIAPX/AAAAAAAAAADgAA8AAAACAAIAAADgAA4AAAAEAAIAAADgAA0AAAAEAAMAAADgAAwAAAAEAAQAAADgAAsAAAACAAAAAADfAA8AAAAAAAQAAADeAA8AAAABAAIAAADdAA8AAAABAAIAAADcAA8AAAABAAQAAADbAA8AAAABAAIAAADaAA8AAAABAAQAAADZAA8AAAAAAAQAAADYAA8AAAABAAIAAADXAA8AAAAAAAQAAADWAA8AAAABAAIAAADVAA8AAAAAAAQAAADUAA8AAAABAAQAAADTAA8AAAABAAIAAADSAA8AAAAAAAQAAADRAA8AAAAAAAQAAADQAA8AAAAAAAQAAADPAA8AAAAAAAQAAADOAA8AAAABAAIAAADNAA8AAAACAAQAAADMAA8AAAABAAQAAADLAA8AAAACAAQAAADKAA8AAAABAAQAAADJAA8AAAAAAAQAAADIAA8AAAAAAAQAAADHAA8AAAACAAQAAADGAA8AAAABAAQAAADFAA8AAAACAAQAAADEAA8AAAABAAIAAADDAA8AAAABAAIAAADCAA8AAAACAAQAAADBAA8AAAACAAQAAADAAA8AAAACAAQAAAC/AA8AAAAAAAIAAAC/AA4AAAAAAAEAAAC/AA0AAAADAAMAAAC/AAwAAAADAAIAAAC/AAsAAAADAAQAAAC/AAoAAAAAAAEAAAC/AAkAAAADAAQAAAC/AAgAAAADAAQAAAC/AAcAAAADAAQAAAC/AAYAAAADAAMAAAC/AAUAAAADAAQAAAC/AAQAAAAAAAEAAAC/AAMAAAAAAAEAAAC/AAIAAAADAAMAAAC/AAEAAAADAAMAAAC/AAAAAAADAAQAAAC/AP//AAAAAAEAAAC/AP7/AAADAAIAAAC/AP3/AAADAAQAAAC/APz/AAADAAMAAAC/APv/AAADAAQAAAC/APr/AAAAAAEAAAC/APn/AAADAAQAAAC/APj/AAAAAAEAAAC/APf/AAADAAMAAAC/APb/AAAAAAEAAAC/APX/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAEAAADfAAsAAAABAAMAAADeAA4AAAABAAEAAADeAA0AAAABAAEAAADeAAwAAAABAAEAAADeAAsAAAABAAMAAADdAA4AAAABAAEAAADdAA0AAAABAAEAAADdAAwAAAABAAEAAADdAAsAAAAAAAMAAADcAA4AAAABAAEAAADcAA0AAAABAAEAAADcAAwAAAABAAEAAADcAAsAAAABAAAAAADbAA4AAAABAAEAAADbAA0AAAABAAEAAADbAAwAAAABAAEAAADbAAsAAAABAAAAAADaAA4AAAABAAEAAADaAA0AAAABAAEAAADaAAwAAAABAAEAAADaAAsAAAABAAAAAADZAA4AAAABAAEAAADZAA0AAAABAAEAAADZAAwAAAABAAEAAADZAAsAAAACAAMAAADYAA4AAAABAAEAAADYAA0AAAABAAEAAADYAAwAAAABAAEAAADYAAsAAAACAAMAAADXAA4AAAABAAEAAADXAA0AAAABAAEAAADXAAwAAAABAAEAAADXAAsAAAACAAMAAADWAA4AAAABAAEAAADWAA0AAAABAAEAAADWAAwAAAABAAEAAADWAAsAAAACAAMAAADVAA4AAAABAAEAAADVAA0AAAABAAEAAADVAAwAAAABAAEAAADVAAsAAAABAAAAAADUAA4AAAABAAEAAADUAA0AAAABAAEAAADUAAwAAAABAAEAAADUAAsAAAAAAAMAAADTAA4AAAABAAEAAADTAA0AAAABAAEAAADTAAwAAAABAAEAAADTAAsAAAABAAAAAADSAA4AAAABAAEAAADSAA0AAAABAAEAAADSAAwAAAABAAEAAADSAAsAAAACAAMAAADRAA4AAAABAAEAAADRAA0AAAABAAEAAADRAAwAAAABAAEAAADRAAsAAAABAAAAAADQAA4AAAABAAEAAADQAA0AAAABAAEAAADQAAwAAAABAAEAAADQAAsAAAACAAMAAADPAA4AAAABAAEAAADPAA0AAAABAAEAAADPAAwAAAABAAEAAADPAAsAAAABAAMAAADOAA4AAAABAAEAAADOAA0AAAABAAEAAADOAAwAAAABAAEAAADOAAsAAAAAAAMAAADNAA4AAAABAAEAAADNAA0AAAABAAEAAADNAAwAAAABAAEAAADNAAsAAAAAAAMAAADMAA4AAAABAAEAAADMAA0AAAABAAEAAADMAAwAAAABAAEAAADMAAsAAAABAAAAAADLAA4AAAABAAEAAADLAA0AAAABAAEAAADLAAwAAAABAAEAAADLAAsAAAABAAAAAADKAA4AAAABAAEAAADKAA0AAAABAAEAAADKAAwAAAABAAEAAADKAAsAAAACAAMAAADJAA4AAAABAAEAAADJAA0AAAABAAEAAADJAAwAAAABAAEAAADJAAsAAAABAAMAAADIAA4AAAABAAEAAADIAA0AAAABAAEAAADIAAwAAAABAAEAAADIAAsAAAACAAMAAADHAA4AAAABAAEAAADHAA0AAAABAAEAAADHAAwAAAABAAEAAADHAAsAAAACAAMAAADGAA4AAAABAAEAAADGAA0AAAABAAEAAADGAAwAAAABAAEAAADGAAsAAAABAAMAAADFAA4AAAABAAEAAADFAA0AAAABAAEAAADFAAwAAAABAAEAAADFAAsAAAACAAMAAADEAA4AAAABAAEAAADEAA0AAAABAAEAAADEAAwAAAABAAEAAADEAAsAAAAAAAMAAADDAA4AAAABAAEAAADDAA0AAAABAAEAAADDAAwAAAABAAEAAADDAAsAAAABAAAAAADCAA4AAAABAAEAAADCAA0AAAABAAEAAADCAAwAAAABAAEAAADCAAsAAAACAAMAAADBAA4AAAABAAEAAADBAA0AAAABAAEAAADBAAwAAAABAAEAAADBAAsAAAABAAAAAADAAA4AAAABAAEAAADAAA0AAAABAAEAAADAAAwAAAABAAEAAADAAAsAAAAAAAMAAADgAA8AAAACAAIAAADgAA4AAAAEAAIAAADgAA0AAAAEAAMAAADgAAwAAAAEAAQAAADgAAsAAAACAAAAAADfAA8AAAAAAAQAAADeAA8AAAABAAIAAADdAA8AAAABAAIAAADcAA8AAAABAAQAAADbAA8AAAABAAIAAADaAA8AAAABAAQAAADZAA8AAAAAAAQAAADYAA8AAAABAAIAAADXAA8AAAAAAAQAAADWAA8AAAABAAIAAADVAA8AAAAAAAQAAADUAA8AAAABAAQAAADTAA8AAAABAAIAAADSAA8AAAAAAAQAAADRAA8AAAAAAAQAAADQAA8AAAAAAAQAAADPAA8AAAAAAAQAAADOAA8AAAABAAIAAADNAA8AAAACAAQAAADMAA8AAAABAAQAAADLAA8AAAACAAQAAADKAA8AAAABAAQAAADJAA8AAAAAAAQAAADIAA8AAAAAAAQAAADHAA8AAAACAAQAAADGAA8AAAABAAQAAADFAA8AAAACAAQAAADEAA8AAAABAAIAAADDAA8AAAABAAIAAADCAA8AAAACAAQAAADBAA8AAAACAAQAAADAAA8AAAACAAQAAAC/AA8AAAAAAAIAAAC/AA4AAAAAAAEAAAC/AA0AAAADAAMAAAC/AAwAAAADAAIAAAC/AAsAAAAAAAAAAAA=")
 tile_set = SubResource("TileSet_y3rt1")
 
 [node name="template" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.482353)
 position = Vector2(1792, 120)
 texture = ExtResource("3_vi8yl")
@@ -390,6 +390,167 @@ position = Vector2(2712, 152)
 
 [node name="bricks28" parent="blocks/bricks" instance=ExtResource("4_7jbd8")]
 position = Vector2(2744, 152)
+
+[node name="bricks29" parent="blocks/bricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3400, 168)
+
+[node name="darkbricks" type="Node" parent="blocks"]
+
+[node name="bricks30" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3400, 168)
+dark = true
+
+[node name="bricks51" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 200)
+dark = true
+
+[node name="bricks52" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 184)
+dark = true
+
+[node name="bricks53" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 168)
+dark = true
+
+[node name="bricks54" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 152)
+dark = true
+
+[node name="bricks55" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 136)
+dark = true
+
+[node name="bricks56" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 120)
+dark = true
+
+[node name="bricks57" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 104)
+dark = true
+
+[node name="bricks58" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 88)
+dark = true
+
+[node name="bricks59" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 72)
+dark = true
+
+[node name="bricks60" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 56)
+dark = true
+
+[node name="bricks61" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3336, 40)
+dark = true
+
+[node name="bricks62" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3400, 40)
+dark = true
+
+[node name="bricks63" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3416, 40)
+dark = true
+
+[node name="bricks64" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3432, 40)
+dark = true
+
+[node name="bricks65" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3448, 40)
+dark = true
+
+[node name="bricks66" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3464, 40)
+dark = true
+
+[node name="bricks67" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3480, 40)
+dark = true
+
+[node name="bricks68" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3496, 40)
+dark = true
+
+[node name="bricks31" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3416, 168)
+dark = true
+
+[node name="bricks32" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3432, 168)
+dark = true
+
+[node name="bricks33" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3448, 168)
+dark = true
+
+[node name="bricks34" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3464, 168)
+dark = true
+
+[node name="bricks35" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3480, 168)
+dark = true
+
+[node name="bricks36" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3496, 168)
+dark = true
+
+[node name="bricks37" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3400, 184)
+dark = true
+
+[node name="bricks38" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3416, 184)
+dark = true
+
+[node name="bricks39" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3432, 184)
+dark = true
+
+[node name="bricks40" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3448, 184)
+dark = true
+
+[node name="bricks41" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3464, 184)
+dark = true
+
+[node name="bricks42" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3480, 184)
+dark = true
+
+[node name="bricks43" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3496, 184)
+dark = true
+
+[node name="bricks44" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3400, 200)
+dark = true
+
+[node name="bricks45" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3416, 200)
+dark = true
+
+[node name="bricks46" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3432, 200)
+dark = true
+
+[node name="bricks47" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3448, 200)
+dark = true
+
+[node name="bricks48" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3464, 200)
+dark = true
+
+[node name="bricks49" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3480, 200)
+dark = true
+
+[node name="bricks50" parent="blocks/darkbricks" instance=ExtResource("4_7jbd8")]
+position = Vector2(3496, 200)
+dark = true
 
 [node name="coinblocks" type="Node" parent="blocks"]
 
@@ -523,8 +684,67 @@ direction = 0
 position = Vector2(2816, 200)
 direction = 0
 
+[node name="coins" type="Node" parent="."]
+
+[node name="coin" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3400, 152)
+
+[node name="coin2" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3416, 152)
+
+[node name="coin3" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3432, 152)
+
+[node name="coin4" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3448, 152)
+
+[node name="coin5" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3464, 152)
+
+[node name="coin6" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3480, 152)
+
+[node name="coin7" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3496, 152)
+
+[node name="coin8" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3400, 120)
+
+[node name="coin9" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3416, 120)
+
+[node name="coin10" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3432, 120)
+
+[node name="coin11" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3448, 120)
+
+[node name="coin12" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3464, 120)
+
+[node name="coin13" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3480, 120)
+
+[node name="coin14" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3496, 120)
+
+[node name="coin16" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3416, 88)
+
+[node name="coin17" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3432, 88)
+
+[node name="coin18" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3448, 88)
+
+[node name="coin19" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3464, 88)
+
+[node name="coin20" parent="coins" instance=ExtResource("8_1457j")]
+position = Vector2(3480, 88)
+
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(33, 208)
+position = Vector2(3361, 120)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(97, 168)
