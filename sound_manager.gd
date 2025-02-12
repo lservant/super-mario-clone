@@ -2,6 +2,9 @@ extends Node
 
 @onready var music: AudioStreamPlayer = $music
 
+func restart_music():
+  music.play()
+
 #items
 @onready var coin: AudioStreamPlayer = $sounds/coin
 @onready var extralife: AudioStreamPlayer = $sounds/extralife

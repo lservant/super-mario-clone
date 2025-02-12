@@ -19,16 +19,20 @@ func add_score(points: int):
 func gain_life():
   SoundManager.play_extralife()
   lives += 1
+  print("Lives: ", lives)
 
 func lose_life():
   pause_game()
   SoundManager.play_hit()
   await get_tree().create_timer(0.5).timeout
   lives -= 1
+  time = 400
+  print("Lives: ", lives)
   if lives <= 0:
     game_over()
   else:
     get_tree().reload_current_scene()
+    SoundManager.restart_music()
 
 func countdown_time():
   time -= 1
