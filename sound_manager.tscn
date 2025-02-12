@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfg4ocshobkyl"]
+
+[ext_resource type="Script" path="res://sound_manager.gd" id="1_tqrxa"]
+[ext_resource type="AudioStream" uid="uid://c72p3nag1nlfp" path="res://assets/audio/coin.wav" id="2_gbvff"]
+
+[node name="SoundManager" type="Node"]
+script = ExtResource("1_tqrxa")
+
+[node name="coin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_gbvff")
+volume_db = -20.0
