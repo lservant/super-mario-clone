@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmv5lp3gw0mu6"]
+[gd_scene load_steps=6 format=3 uid="uid://bmv5lp3gw0mu6"]
 
 [ext_resource type="Script" path="res://ui.gd" id="1_14bqc"]
 [ext_resource type="FontFile" uid="uid://byv4w3tts1ykn" path="res://assets/PublicPixel-rv0pA.ttf" id="1_j5lyi"]
 [ext_resource type="Texture2D" uid="uid://cm1nhih748qcp" path="res://assets/objects.png" id="1_uof30"]
+[ext_resource type="SpriteFrames" uid="uid://q4oyddux7a3v" path="res://assets/coin.tres" id="4_e6elu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_tqav8"]
 line_spacing = 0.0
@@ -88,3 +89,10 @@ texture = ExtResource("1_uof30")
 hframes = 5
 vframes = 4
 frame = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CoinGroup"]
+position = Vector2(0, 4)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("4_e6elu")
+autoplay = "default"
+frame_progress = 0.460383
