@@ -744,7 +744,7 @@ position = Vector2(3464, 88)
 position = Vector2(3480, 88)
 
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(3369, 112)
+position = Vector2(3393, 80)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(97, 168)

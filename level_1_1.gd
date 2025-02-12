@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 func _on_bound_bottom_body_entered(body: Node2D) -> void:
   if body.name != "player":
     return
-  get_tree().reload_current_scene()
+  Game.lose_life()
 
 
 func _on_timer_timeout() -> void:
