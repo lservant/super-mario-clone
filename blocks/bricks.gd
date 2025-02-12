@@ -30,6 +30,7 @@ func _on_underside_body_entered(body: Node2D) -> void:
   
 func bounce():
   anim.play("bounce")
+  SoundManager.play_thud()
 
 func destroy():
   collider.disabled = true
@@ -38,4 +39,6 @@ func destroy():
     sprite.frame = DESTROY_FRAME_DARK
   else:
     sprite.frame = DESTROY_FRAME
+  SoundManager.play_bricksplosion()
   await get_tree().create_timer(0.4).timeout
+  queue_free()

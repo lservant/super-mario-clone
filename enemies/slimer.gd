@@ -52,6 +52,7 @@ func change_direction():
   sprite.flip_h = !sprite.flip_h
 
 func die():
+  SoundManager.play_stomp()
   Game.add_score(100)
   queue_free()
 

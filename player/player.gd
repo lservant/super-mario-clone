@@ -1,9 +1,9 @@
 extends CharacterBody2D
 class_name Player
 
-@onready var anim_movement : AnimationPlayer = $anim_movement
-@onready var anim_transform : AnimationPlayer = $anim_transform
-@onready var anim_hit : AnimationPlayer = $anim_hit
+@onready var anim_movement: AnimationPlayer = $anim_movement
+@onready var anim_transform: AnimationPlayer = $anim_transform
+@onready var anim_hit: AnimationPlayer = $anim_hit
 
 const accel = 100.0
 const max_walk = 100.0
@@ -17,7 +17,7 @@ const weight = 0.11
 const friction = 0.22
 
 enum DIRECTION {LEFT, RIGHT}
-var direction : DIRECTION
+var direction: DIRECTION
 
 var current_state: String
 var is_running: bool = false
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
   move_and_slide()
   
 func update_direction():
-  var dir := Input.get_axis("move_left","move_right")
+  var dir := Input.get_axis("move_left", "move_right")
   if dir > 0:
     direction = DIRECTION.RIGHT
     $small_sprite.flip_h = false
@@ -55,6 +55,7 @@ func grow():
   if !is_big:
     get_tree().paused = true
     anim_transform.play("grow")
+    SoundManager.play_grow()
     is_big = true
 
 func hit(enemy: Node2D):
@@ -63,7 +64,9 @@ func hit(enemy: Node2D):
     return
   if is_immune:
     return
+
   get_tree().paused = true
+  SoundManager.play_hit()
   is_immune = true
   if is_big:
     anim_transform.play_backwards("grow")
@@ -72,7 +75,7 @@ func hit(enemy: Node2D):
     anim_hit.stop()
     is_immune = false
   else:
-    get_tree().reload_current_scene()
+    Game.lose_life()
 
 func be_flashy():
   is_flashy = true
@@ -98,5 +101,3 @@ func _on_anim_transform_animation_finished(anim_name: StringName) -> void:
     if is_immune:
       anim_hit.play("hit")
     get_tree().paused = false
-    
-  

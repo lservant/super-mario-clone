@@ -5,6 +5,7 @@ func _ready() -> void:
   
 func reset():
   super.reset()
+  SoundManager.play_jump()
   player.is_jumping = true
   await get_tree().create_timer(player.jump_time).timeout
   player.is_jumping = false

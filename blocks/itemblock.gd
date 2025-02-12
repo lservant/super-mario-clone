@@ -31,7 +31,7 @@ func _on_underside_body_entered(body: Node2D) -> void:
   
   var player: Player = body
   player.change_state("fall")
-  
+  SoundManager.play_thud()
   if not is_empty():
     bounce()
 
@@ -45,6 +45,7 @@ func _on_underside_body_entered(body: Node2D) -> void:
     
 func give_item():
   has_item = false
+  SoundManager.play_item()
   var item: Item = item_scene.instantiate()
   var item_tween = item.create_tween()
   item.position = position
