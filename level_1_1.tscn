@@ -642,11 +642,15 @@ position = Vector2(2624, 192)
 [node name="Pipe6" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
 position = Vector2(2880, 192)
 
-[node name="Pipe7" parent="blocks/pipes" node_paths=PackedStringArray("teleport_to") instance=ExtResource("7_d2klq")]
+[node name="PipeToB" parent="blocks/pipes" node_paths=PackedStringArray("teleport_to") instance=ExtResource("7_d2klq")]
 position = Vector2(3552, 192)
 rotation = -1.57079
 teleport_to = NodePath("../../../Spawns/B")
 height = 3
+
+[node name="Pipe7" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
+position = Vector2(3584, 0)
+height = 14
 
 [node name="enemies" type="Node" parent="."]
 
@@ -789,6 +793,7 @@ position = Vector2(921, 48)
 position = Vector2(97, 168)
 limit_left = 0
 limit_top = 0
+limit_right = 3584
 limit_bottom = -260
 editor_draw_limits = true
 script = ExtResource("4_idvxg")
