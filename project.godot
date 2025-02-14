@@ -37,6 +37,10 @@ folder_colors={
 "res://player/": "yellow"
 }
 
+[global_group]
+
+Pipes=""
+
 [input]
 
 move_right={

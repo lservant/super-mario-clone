@@ -25,6 +25,8 @@ var is_jumping: bool = false
 var is_big: bool = false
 var is_immune: bool = false
 var is_flashy: bool = false
+var can_move: bool = true
+var is_teleporting: bool = false
 
 var immune_time: float = 3.0
 var flashy_time: float = 10.0
@@ -112,3 +114,31 @@ func mount_pipe(pipe: Pipe):
 func dismount_pipe(pipe: Pipe):
   is_on_pipe = false
   mounted_pipe = null
+
+func try_teleport(dir: Pipe.ENTER_DIR):
+  if !is_on_pipe:
+    return
+  if is_teleporting:
+    return
+  if not can_move:
+    return
+
+  is_teleporting = true
+  return await mounted_pipe.teleport_player(self, dir)
+
+func start_teleport():
+  can_move = false
+  scale = Vector2(0.9,0.9)
+
+func finish_teleport():
+  scale = Vector2(1, 1)
+  is_on_pipe = false
+  mounted_pipe = null
+  can_move = true
+  is_teleporting = false
+
+func get_size():
+  if is_big:
+    return Vector2(16, 32)
+  else:
+    return Vector2(16, 16)

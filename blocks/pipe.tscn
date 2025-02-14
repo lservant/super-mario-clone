@@ -9,7 +9,7 @@ size = Vector2(32, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wpyyo"]
 size = Vector2(20, 10)
 
-[node name="Pipe" type="Node2D"]
+[node name="Pipe" type="Node2D" groups=["Pipes"]]
 script = ExtResource("1_w1fq3")
 
 [node name="top" type="Sprite2D" parent="."]
@@ -34,6 +34,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="teleporter"]
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_wpyyo")
+
+[node name="playerspawn" type="Node2D" parent="."]
 
 [connection signal="body_entered" from="teleporter" to="." method="_on_teleporter_body_entered"]
 [connection signal="body_exited" from="teleporter" to="." method="_on_teleporter_body_exited"]

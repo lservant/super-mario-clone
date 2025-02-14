@@ -8,7 +8,7 @@ func _physics_process(delta: float) -> void:
     return
   
   if player.is_on_pipe:
-    player.mounted_pipe.teleport_player(player, Pipe.ENTER_DIR.TOP)
+    await player.try_teleport(Pipe.ENTER_DIR.TOP)
     return
   
   handle_jump(delta)

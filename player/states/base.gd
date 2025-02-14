@@ -19,12 +19,12 @@ func handle_horizontal(delta: float):
     target_speed = min(player.velocity.x + player.accel, max_speed)
   if Input.is_action_pressed("move_left"):
     target_speed = max(player.velocity.x - player.accel, -max_speed)
-  if target_speed != 0.0:
+  if target_speed != 0.0 and player.can_move:
     player.velocity.x = lerp(player.velocity.x, target_speed, player.weight)
   return target_speed
 
 func handle_jump(delta: float):
-  if Input.is_action_just_pressed("jump"):
+  if Input.is_action_just_pressed("jump") and player.can_move:
     player.velocity.y = -player.jump_height * 500 * delta
     player.change_state("jump")
 
