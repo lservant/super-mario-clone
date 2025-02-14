@@ -631,8 +631,9 @@ height = 3
 position = Vector2(752, 160)
 height = 4
 
-[node name="Pipe4" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
+[node name="PipeToA" parent="blocks/pipes" node_paths=PackedStringArray("teleport_to") instance=ExtResource("7_d2klq")]
 position = Vector2(928, 160)
+teleport_to = NodePath("../../../Spawns/A")
 height = 4
 
 [node name="Pipe5" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
@@ -640,6 +641,12 @@ position = Vector2(2624, 192)
 
 [node name="Pipe6" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
 position = Vector2(2880, 192)
+
+[node name="Pipe7" parent="blocks/pipes" node_paths=PackedStringArray("teleport_to") instance=ExtResource("7_d2klq")]
+position = Vector2(3552, 192)
+rotation = -1.57079
+teleport_to = NodePath("../../../Spawns/B")
+height = 3
 
 [node name="enemies" type="Node" parent="."]
 
@@ -767,8 +774,16 @@ position = Vector2(3464, 88)
 [node name="coin20" parent="coins" instance=ExtResource("8_1457j")]
 position = Vector2(3480, 88)
 
+[node name="Spawns" type="Node" parent="."]
+
+[node name="A" type="Node2D" parent="Spawns"]
+position = Vector2(3360, 40)
+
+[node name="B" type="Node2D" parent="Spawns"]
+position = Vector2(2624, 160)
+
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(457, 160)
+position = Vector2(921, 48)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(97, 168)

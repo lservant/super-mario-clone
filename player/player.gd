@@ -101,3 +101,14 @@ func _on_anim_transform_animation_finished(anim_name: StringName) -> void:
     if is_immune:
       anim_hit.play("hit")
     get_tree().paused = false
+
+var is_on_pipe = false
+var mounted_pipe: Pipe
+
+func mount_pipe(pipe: Pipe):
+  is_on_pipe = true
+  mounted_pipe = pipe
+
+func dismount_pipe(pipe: Pipe):
+  is_on_pipe = false
+  mounted_pipe = null

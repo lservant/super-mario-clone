@@ -7,6 +7,8 @@ func _physics_process(delta: float) -> void:
   if player.current_state != state:
     return
   
+  handle_crouch()
+  
   if player.is_running:
     player.anim_movement.play("run")
   else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dxxul4cieia5l"]
+[gd_scene load_steps=23 format=3 uid="uid://dxxul4cieia5l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ute0i"]
 [ext_resource type="Texture2D" uid="uid://84vy6iw53yic" path="res://assets/bario_small.png" id="2_dem26"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://player/states/jump.gd" id="6_uj6a4"]
 [ext_resource type="Script" path="res://player/states/fall.gd" id="7_poaj7"]
 [ext_resource type="Script" path="res://player/states/bounce.gd" id="8_ch0gv"]
+[ext_resource type="Script" path="res://player/states/crouch.gd" id="9_ftl5e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nyrad"]
 size = Vector2(12, 15)
@@ -346,5 +347,8 @@ script = ExtResource("7_poaj7")
 
 [node name="bounce" type="Node" parent="States"]
 script = ExtResource("8_ch0gv")
+
+[node name="crouch" type="Node" parent="States"]
+script = ExtResource("9_ftl5e")
 
 [connection signal="animation_finished" from="anim_transform" to="." method="_on_anim_transform_animation_finished"]

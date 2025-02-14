@@ -27,3 +27,7 @@ func handle_jump(delta: float):
   if Input.is_action_just_pressed("jump"):
     player.velocity.y = -player.jump_height * 500 * delta
     player.change_state("jump")
+
+func handle_crouch():
+  if Input.is_action_pressed("crouch"):
+    player.change_state("crouch")
