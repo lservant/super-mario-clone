@@ -300,6 +300,7 @@ tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAE
 tile_set = SubResource("TileSet_y3rt1")
 
 [node name="template" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.482353)
 position = Vector2(1792, 120)
 texture = ExtResource("3_vi8yl")
@@ -636,7 +637,7 @@ position = Vector2(928, 160)
 teleport_to = NodePath("../../../Spawns/A")
 height = 4
 
-[node name="Pipe5" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
+[node name="PipeB" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
 position = Vector2(2624, 192)
 
 [node name="Pipe6" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
@@ -645,7 +646,7 @@ position = Vector2(2880, 192)
 [node name="PipeToB" parent="blocks/pipes" node_paths=PackedStringArray("teleport_to") instance=ExtResource("7_d2klq")]
 position = Vector2(3552, 192)
 rotation = -1.57079
-teleport_to = NodePath("../../../Spawns/B")
+teleport_to = NodePath("../PipeB")
 height = 3
 
 [node name="Pipe7" parent="blocks/pipes" instance=ExtResource("7_d2klq")]
@@ -783,11 +784,8 @@ position = Vector2(3480, 88)
 [node name="A" type="Node2D" parent="Spawns"]
 position = Vector2(3360, 40)
 
-[node name="B" type="Node2D" parent="Spawns"]
-position = Vector2(2624, 160)
-
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(921, 48)
+position = Vector2(49, 200)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(97, 168)
