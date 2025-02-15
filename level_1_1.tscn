@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://b4ad07mh7alst"]
+[gd_scene load_steps=19 format=4 uid="uid://b4ad07mh7alst"]
 
 [ext_resource type="Script" path="res://level_1_1.gd" id="1_e43rk"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="1_viccv"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dkafyvxk33hjk" path="res://items/coin.tscn" id="8_1457j"]
 [ext_resource type="PackedScene" uid="uid://cdkdbdo8rlvxa" path="res://enemies/slimer.tscn" id="9_sbgu7"]
 [ext_resource type="PackedScene" uid="uid://bmv5lp3gw0mu6" path="res://ui.tscn" id="10_8qy0n"]
+[ext_resource type="PackedScene" uid="uid://b34mhp4wcgwdo" path="res://checkpoint.tscn" id="13_s4h5s"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4cux"]
 texture = ExtResource("2_yxrcs")
@@ -300,7 +301,6 @@ tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAE
 tile_set = SubResource("TileSet_y3rt1")
 
 [node name="template" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.482353)
 position = Vector2(1792, 120)
 texture = ExtResource("3_vi8yl")
@@ -784,6 +784,9 @@ position = Vector2(3480, 88)
 [node name="A" type="Node2D" parent="Spawns"]
 position = Vector2(3360, 40)
 
+[node name="Checkpoint 1 Spawn" type="Node2D" parent="Spawns"]
+position = Vector2(1328, 192)
+
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
 position = Vector2(49, 200)
 
@@ -820,6 +823,11 @@ process_mode = 3
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
 autostart = true
+
+[node name="checkpoint1" parent="." node_paths=PackedStringArray("respawn") instance=ExtResource("13_s4h5s")]
+position = Vector2(1329, 192)
+rotation = 3.14159
+respawn = NodePath("../Spawns/Checkpoint 1 Spawn")
 
 [connection signal="body_entered" from="bound_bottom" to="." method="_on_bound_bottom_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -5,6 +5,8 @@ var coins: int = 0
 var lives: int = 3
 var time: int = 400
 
+var spawn: Vector2 = Vector2.ZERO
+
 func add_coin():
   SoundManager.play_coin()
   coins += 1
@@ -47,3 +49,11 @@ func pause_game():
   
 func resume_game():
   get_tree().paused = false
+
+func set_spawn(spawn: Node2D):
+  print("Set spawn ", spawn.position)
+  self.spawn = spawn.position
+  self.spawn.x -= 8
+
+func unset_spawn():
+  self.spawn = Vector2.ZERO
