@@ -42,7 +42,13 @@ func _physics_process(delta: float) -> void:
   
   update_direction()
   move_and_slide()
-  
+
+func get_center():
+  if is_big:
+    return $big_sprite.global_position
+  else:
+    return $small_sprite.global_position
+    
 func update_direction():
   var dir := Input.get_axis("move_left", "move_right")
   if dir > 0:
