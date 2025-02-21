@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://dt3yxdnn2174e"]
+
+[ext_resource type="Script" path="res://enemies/hamster/hamster.gd" id="1_47ton"]
+[ext_resource type="Texture2D" uid="uid://dy0w02srpd7p2" path="res://assets/hamster.png" id="2_63u2c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x8sbr"]
+radius = 7.01783
+
+[sub_resource type="Animation" id="Animation_our6w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_xl3kb"]
+resource_name = "move"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_777tn"]
+_data = {
+"RESET": SubResource("Animation_our6w"),
+"move": SubResource("Animation_xl3kb")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6kvjh"]
+size = Vector2(16, 3.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_235m3"]
+size = Vector2(15.5, 15)
+
+[node name="hamster" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 9
+script = ExtResource("1_47ton")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_63u2c")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("CircleShape2D_x8sbr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_777tn")
+}
+autoplay = "move"
+
+[node name="collider_stomp" type="Area2D" parent="."]
+position = Vector2(0, -7)
+collision_layer = 8
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider_stomp"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_6kvjh")
+
+[node name="collider_hit" type="Area2D" parent="."]
+position = Vector2(0, -7.25)
+collision_layer = 10
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider_hit"]
+position = Vector2(-0.25, 7.75)
+shape = SubResource("RectangleShape2D_235m3")
+debug_color = Color(0.998559, 0, 0.138814, 0.42)
+
+[node name="ray_wallcheck" type="RayCast2D" parent="."]
+target_position = Vector2(10, 0)
+collision_mask = 9
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="collider_stomp" to="." method="_on_collider_stomp_body_entered"]
+[connection signal="body_entered" from="collider_hit" to="." method="_on_collider_hit_body_entered"]

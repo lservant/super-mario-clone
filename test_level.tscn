@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://bo13uvmvwuhu8"]
+[gd_scene load_steps=6 format=4 uid="uid://bo13uvmvwuhu8"]
 
 [ext_resource type="Script" path="res://test_level.gd" id="1_f3wlj"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="2_vd370"]
-[ext_resource type="PackedScene" uid="uid://cybl028lipv0" path="res://enemies/hamster/hamster.tscn" id="4_cqdew"]
+[ext_resource type="PackedScene" uid="uid://dt3yxdnn2174e" path="res://enemies/hamster/hamster.tscn" id="4_cqdew"]
+[ext_resource type="PackedScene" uid="uid://cdkdbdo8rlvxa" path="res://enemies/slimer.tscn" id="5_o7mld"]
 [ext_resource type="PackedScene" uid="uid://dxxul4cieia5l" path="res://player/player.tscn" id="10_dqis6"]
 
 [node name="level1-1" type="Node2D"]
@@ -18,8 +19,7 @@ tile_set = ExtResource("2_vd370")
 position = Vector2(124, 137)
 
 [node name="hamster" parent="." instance=ExtResource("4_cqdew")]
-position = Vector2(134, 195)
-direction = null
-move_speed = 0
-kick_speed = null
-hide_time = null
+position = Vector2(56, 175)
+
+[node name="slimer" parent="." instance=ExtResource("5_o7mld")]
+position = Vector2(182, 179)
