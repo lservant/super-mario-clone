@@ -18,7 +18,9 @@ var counter = 0
 
 func _ready() -> void:
   if direction == DIRECTION.LEFT:
-    change_direction()
+    wallray_collider.target_position.x = -wallray_collider.target_position.x
+    dir_scalar *= -1
+    sprite.flip_h = !sprite.flip_h
 
 func _physics_process(delta: float) -> void:
   counter += 1
@@ -80,13 +82,15 @@ func get_kicked():
   if !can_kick():
     return
   tprint("kick")
-  var angle_to_player = get_angle_to(player.position) / PI
-  var desired_direction = direction
+  var angle_to_player = get_angle_to(player.get_center()) / PI
+  var desired_direction: DIRECTION = direction
   if angle_to_player >= 0.5 and angle_to_player <= 1.5:
     desired_direction = DIRECTION.RIGHT
   elif angle_to_player < 0.5 or angle_to_player > 1.5:
     desired_direction = DIRECTION.LEFT
+  print(angle_to_player, "dir", desired_direction, direction)
   if desired_direction != direction:
+    print("change dir")
     change_direction()
   change_state("kicked")
   is_being_kicked = false
