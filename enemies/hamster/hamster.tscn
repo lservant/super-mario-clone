@@ -1,25 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://dt3yxdnn2174e"]
+[gd_scene load_steps=13 format=3 uid="uid://dt3yxdnn2174e"]
 
 [ext_resource type="Script" path="res://enemies/hamster/hamster.gd" id="1_47ton"]
 [ext_resource type="Texture2D" uid="uid://dy0w02srpd7p2" path="res://assets/hamster.png" id="2_63u2c"]
+[ext_resource type="PackedScene" uid="uid://csy7eec8btw3p" path="res://utils/state_machine.tscn" id="3_5fnrt"]
+[ext_resource type="Script" path="res://enemies/hamster/states/idle.gd" id="3_bwjsq"]
+[ext_resource type="Script" path="res://enemies/hamster/states/kicked.gd" id="4_vomn2"]
+[ext_resource type="Script" path="res://enemies/hamster/states/hide.gd" id="5_vgu03"]
+[ext_resource type="Script" path="res://enemies/hamster/states/move.gd" id="6_8gg08"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x8sbr"]
 radius = 7.01783
-
-[sub_resource type="Animation" id="Animation_our6w"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [10]
-}
 
 [sub_resource type="Animation" id="Animation_xl3kb"]
 resource_name = "move"
@@ -40,7 +30,6 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_777tn"]
 _data = {
-"RESET": SubResource("Animation_our6w"),
 "move": SubResource("Animation_xl3kb")
 }
 
@@ -70,7 +59,6 @@ root_node = NodePath("../Sprite2D")
 libraries = {
 "": SubResource("AnimationLibrary_777tn")
 }
-autoplay = "move"
 
 [node name="collider_stomp" type="Area2D" parent="."]
 position = Vector2(0, -7)
@@ -95,7 +83,27 @@ debug_color = Color(0.998559, 0, 0.138814, 0.42)
 target_position = Vector2(10, 0)
 collision_mask = 9
 
+[node name="States" parent="." instance=ExtResource("3_5fnrt")]
+debug = true
+
+[node name="move" type="Node" parent="States"]
+script = ExtResource("6_8gg08")
+
+[node name="hide" type="Node" parent="States"]
+script = ExtResource("5_vgu03")
+
+[node name="kicked" type="Node" parent="States"]
+script = ExtResource("4_vomn2")
+
+[node name="idle" type="Node" parent="States"]
+script = ExtResource("3_bwjsq")
+
+[node name="can_hit_player_timer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="collider_stomp" to="." method="_on_collider_stomp_body_entered"]
 [connection signal="body_entered" from="collider_hit" to="." method="_on_collider_hit_body_entered"]
+[connection signal="body_exited" from="collider_hit" to="." method="_on_collider_hit_body_exited"]
+[connection signal="timeout" from="can_hit_player_timer" to="." method="_on_can_hit_player_timer_timeout"]

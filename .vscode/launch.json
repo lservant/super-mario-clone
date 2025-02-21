@@ -4,8 +4,6 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-
-        
         {
             "name": "Launch",
             "type": "godot",
@@ -14,7 +12,7 @@
             "debug_collisions": false,
             "debug_paths": false,
             "debug_navigation": false,
-            "additional_options": ""
+            "additional_options": "-t",
         },
         {
             "name": "Launch with Collisions",
@@ -24,7 +22,7 @@
             "debug_collisions": true,
             "debug_paths": false,
             "debug_navigation": false,
-            "additional_options": ""
+            "additional_options": "-t"
         }
     ]
 }
