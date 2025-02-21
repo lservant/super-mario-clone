@@ -75,7 +75,7 @@ func _on_collider_stomp_body_entered(body: Node2D) -> void:
   if body.name != "player":
     return
   player = body
-  if player.current_state == "fall" or player.current_state == "jump":
+  if player.sm.current_state == "fall":
     is_stomped = true
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
