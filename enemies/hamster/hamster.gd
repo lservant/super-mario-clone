@@ -14,12 +14,14 @@ var dir_scalar = 1
 @onready var sm = $States
 
 var player: Player
+var counter = 0
 
 func _ready() -> void:
   if direction == DIRECTION.LEFT:
     change_direction()
 
 func _physics_process(delta: float) -> void:
+  counter += 1
   # Add the gravity.
   if not is_on_floor():
     velocity += get_gravity() * delta
@@ -56,51 +58,81 @@ func hit() -> void:
   player.hit(self)
 
 func get_stomped():
+  reset_can_kick()
+  tprint("stomp")
   reset_can_hit_player()
   player.change_state("bounce")
-  if sm.current_state == "move" or sm.current_state == "idle" or sm.current_state == "kicked":
+  if sm.current_state == "move" \
+      or sm.current_state == "idle" \
+      or sm.current_state == "kicked":
     change_state("hide")
   else:
     change_state("kicked")
+  is_stomped = false
+
+var is_being_kicked = false
+@onready var can_kick_timer = $can_kick_timer
+func can_kick():
+  return !can_kick_timer.running
+func reset_can_kick():
+  can_kick_timer.reset(0.5)
+func get_kicked():
+  if !can_kick():
+    return
+  tprint("kick")
+  var angle_to_player = get_angle_to(player.position) / PI
+  var desired_direction = direction
+  if angle_to_player >= 0.5 and angle_to_player <= 1.5:
+    desired_direction = DIRECTION.RIGHT
+  elif angle_to_player < 0.5 or angle_to_player > 1.5:
+    desired_direction = DIRECTION.LEFT
+  if desired_direction != direction:
+    change_direction()
+  change_state("kicked")
+  is_being_kicked = false
 
 var is_hitting_player = false
-var can_hit_player = true
 @onready var can_hit_timer = $can_hit_player_timer
+func can_hit_player():
+  return !can_hit_timer.running
 func reset_can_hit_player():
-  can_hit_player =  false
-  print("cant hit")
-  can_hit_timer.start(0.5)
-  
-func _on_can_hit_player_timer_timeout() -> void:
-  can_hit_player = true
-  print("can hit")
+  can_hit_timer.reset(0.5)
 
 func _on_collider_hit_body_entered(body: Node2D) -> void:
   if body.name != "player":
     return
   
   player = body
-  print("is hitting player")
-  if can_hit_player:
-    print("can hit player while hitting player")
+
+  if sm.current_state == "hide" and can_kick():
+    is_being_kicked = true
+    return
+
+  if can_hit_player():
     is_hitting_player = true
 
-func _on_collider_hit_body_exited(body:Node2D) -> void:
+func _on_collider_hit_body_exited(body: Node2D) -> void:
   if body.name != "player":
     return
   
-  print("not hitting player")
   is_hitting_player = false
 
+var is_stomped = false
 func _on_collider_stomp_body_entered(body: Node2D) -> void:
   if body.name != "player":
     return
   player = body
-  if player.sm.current_state == "fall":
-    get_stomped()
+  if player.sm.current_state == "fall" and not is_being_kicked:
+    is_stomped = true
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
   start_moving()
   
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
   queue_free()
+
+func tprint(msg):
+  print(counter, ": ", msg)
+  print("is_stomped: ", is_stomped)
+  print("is_being_kicked: ", is_being_kicked)
+  print("can_kick: ", can_kick())

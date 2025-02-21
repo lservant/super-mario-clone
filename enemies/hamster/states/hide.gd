@@ -12,5 +12,11 @@ func _physics_process(delta: float) -> void:
   if sm.current_state != state:
     return
   
-  hamster.velocity.x = lerp(hamster.velocity.x, 0.0, 0.1)
+  if hamster.is_stomped:
+    hamster.get_stomped()
+    return
+  if hamster.is_being_kicked:
+    hamster.get_kicked()
+    return
   
+  hamster.velocity.x = lerp(hamster.velocity.x, 0.0, 0.1)

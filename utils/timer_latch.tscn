@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://xc6aagru5p66"]
+
+[ext_resource type="Script" path="res://utils/timer_latch.gd" id="1_qlp26"]
+
+[node name="timer_latch" type="Timer"]
+one_shot = true
+script = ExtResource("1_qlp26")
+
+[connection signal="timeout" from="." to="." method="_on_timeout"]

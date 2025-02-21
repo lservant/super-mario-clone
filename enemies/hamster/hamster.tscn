@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dt3yxdnn2174e"]
+[gd_scene load_steps=16 format=3 uid="uid://dt3yxdnn2174e"]
 
 [ext_resource type="Script" path="res://enemies/hamster/hamster.gd" id="1_47ton"]
 [ext_resource type="Texture2D" uid="uid://dy0w02srpd7p2" path="res://assets/hamster.png" id="2_63u2c"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://enemies/hamster/states/kicked.gd" id="4_vomn2"]
 [ext_resource type="Script" path="res://enemies/hamster/states/hide.gd" id="5_vgu03"]
 [ext_resource type="Script" path="res://enemies/hamster/states/move.gd" id="6_8gg08"]
+[ext_resource type="PackedScene" uid="uid://xc6aagru5p66" path="res://utils/timer_latch.tscn" id="8_p3q0c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x8sbr"]
 radius = 7.01783
@@ -28,8 +29,42 @@ tracks/0/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_4g68l"]
+resource_name = "kicked"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_13jex"]
+resource_name = "hide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_777tn"]
 _data = {
+"hide": SubResource("Animation_13jex"),
+"kicked": SubResource("Animation_4g68l"),
 "move": SubResource("Animation_xl3kb")
 }
 
@@ -80,7 +115,7 @@ shape = SubResource("RectangleShape2D_235m3")
 debug_color = Color(0.998559, 0, 0.138814, 0.42)
 
 [node name="ray_wallcheck" type="RayCast2D" parent="."]
-target_position = Vector2(10, 0)
+target_position = Vector2(8, 0)
 collision_mask = 9
 
 [node name="States" parent="." instance=ExtResource("3_5fnrt")]
@@ -98,12 +133,12 @@ script = ExtResource("4_vomn2")
 [node name="idle" type="Node" parent="States"]
 script = ExtResource("3_bwjsq")
 
-[node name="can_hit_player_timer" type="Timer" parent="."]
-one_shot = true
+[node name="can_hit_player_timer" parent="." instance=ExtResource("8_p3q0c")]
+
+[node name="can_kick_timer" parent="." instance=ExtResource("8_p3q0c")]
 
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="body_entered" from="collider_stomp" to="." method="_on_collider_stomp_body_entered"]
 [connection signal="body_entered" from="collider_hit" to="." method="_on_collider_hit_body_entered"]
 [connection signal="body_exited" from="collider_hit" to="." method="_on_collider_hit_body_exited"]
-[connection signal="timeout" from="can_hit_player_timer" to="." method="_on_can_hit_player_timer_timeout"]
