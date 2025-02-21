@@ -1,8 +1,7 @@
-extends Node
-class_name PlayerStateBase
+extends StateBase
+class_name PlayerState
 
-@onready var player: Player = get_parent().get_parent()
-var state: String
+@onready var player: Player = actor
 
 func reset():
   player.anim_movement.play(state)

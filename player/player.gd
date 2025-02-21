@@ -19,7 +19,8 @@ const friction = 0.22
 enum DIRECTION {LEFT, RIGHT}
 var direction: DIRECTION
 
-var current_state: String
+@onready var sm: StateMachine = $States
+
 var is_running: bool = false
 var is_jumping: bool = false
 var is_big: bool = false
@@ -89,14 +90,7 @@ func be_flashy():
   is_flashy = false
 
 func change_state(new_state: String):
-  print("Changing state ", current_state, ", ", new_state)
-  current_state = new_state
-  
-  var states = $States
-  for i in states.get_child_count():
-    var state = states.get_child(i)
-    if new_state == state.name:
-      state.reset()
+  sm.change_state(new_state)
 
 func _on_anim_transform_animation_finished(anim_name: StringName) -> void:
   if anim_name == "grow":

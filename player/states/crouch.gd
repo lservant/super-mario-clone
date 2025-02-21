@@ -1,10 +1,10 @@
-extends PlayerStateBase
+extends PlayerState
 
 func _ready() -> void:
   state = "crouch"
 
 func _physics_process(delta: float) -> void:
-  if player.current_state != state:
+  if sm.current_state != state:
     return
   
   if player.is_on_pipe:

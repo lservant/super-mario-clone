@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dxxul4cieia5l"]
+[gd_scene load_steps=24 format=3 uid="uid://dxxul4cieia5l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ute0i"]
 [ext_resource type="Texture2D" uid="uid://84vy6iw53yic" path="res://assets/bario_small.png" id="2_dem26"]
 [ext_resource type="Texture2D" uid="uid://cfjysghwb03kd" path="res://assets/bario_big.png" id="3_upc0s"]
 [ext_resource type="Script" path="res://player/states/idle.gd" id="4_preel"]
+[ext_resource type="PackedScene" uid="uid://csy7eec8btw3p" path="res://utils/state_machine.tscn" id="4_wovek"]
 [ext_resource type="Script" path="res://player/states/walk.gd" id="5_5xa8r"]
 [ext_resource type="Script" path="res://player/states/jump.gd" id="6_uj6a4"]
 [ext_resource type="Script" path="res://player/states/fall.gd" id="7_poaj7"]
@@ -331,7 +332,7 @@ libraries = {
 "": SubResource("AnimationLibrary_a3vya")
 }
 
-[node name="States" type="Node" parent="."]
+[node name="States" parent="." instance=ExtResource("4_wovek")]
 
 [node name="idle" type="Node" parent="States"]
 script = ExtResource("4_preel")

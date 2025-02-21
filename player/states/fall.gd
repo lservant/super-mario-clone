@@ -1,4 +1,4 @@
-extends PlayerStateBase
+extends PlayerState
 
 func _ready() -> void:
   state = "fall"
@@ -7,7 +7,7 @@ func reset():
   player.anim_movement.play("jump")
   
 func _physics_process(delta: float) -> void:
-  if player.current_state != state:
+  if sm.current_state != state:
     return
     
   handle_horizontal(delta)

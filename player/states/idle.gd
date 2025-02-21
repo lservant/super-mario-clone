@@ -1,10 +1,10 @@
-extends PlayerStateBase
+extends PlayerState
 
 func _ready() -> void:
   state = "idle"
   
 func _physics_process(delta: float) -> void:
-  if player.current_state != state:
+  if sm.current_state != state:
     return
   
   if Input.is_action_pressed("move_right"):
