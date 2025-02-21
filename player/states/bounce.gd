@@ -9,6 +9,6 @@ func _physics_process(delta: float) -> void:
     
   handle_horizontal(delta)
   
-  player.velocity.y = -player.jump_height * 500 * delta
+  player.velocity.y = -player.jump_height * 750 * delta
   
   player.change_state("jump")
