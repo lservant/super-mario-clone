@@ -4,13 +4,24 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         
         {
-            "name": "GDScript: Launch Project",
+            "name": "Launch",
             "type": "godot",
             "request": "launch",
             "project": "${workspaceFolder}",
             "debug_collisions": false,
+            "debug_paths": false,
+            "debug_navigation": false,
+            "additional_options": ""
+        },
+        {
+            "name": "Launch with Collisions",
+            "type": "godot",
+            "request": "launch",
+            "project": "${workspaceFolder}",
+            "debug_collisions": true,
             "debug_paths": false,
             "debug_navigation": false,
             "additional_options": ""
