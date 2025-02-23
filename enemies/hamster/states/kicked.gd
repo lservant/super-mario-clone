@@ -5,6 +5,7 @@ func _ready() -> void:
 
 func reset() -> void:
   super()
+  hamster.wallray_collider.set_collision_mask_value(4, false)
   hamster.anim.play("kicked")
 
 func _physics_process(delta: float) -> void:
@@ -18,4 +19,3 @@ func _physics_process(delta: float) -> void:
     hamster.hit()
   
   hamster.velocity.x = hamster.kick_speed * 500 * delta * hamster.dir_scalar
-  

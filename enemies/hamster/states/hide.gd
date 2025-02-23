@@ -5,6 +5,7 @@ func _ready() -> void:
 
 func reset() -> void:
   super()
+  hamster.wallray_collider.set_collision_mask_value(4, true)
   hamster.player.change_state("bounce")
   hamster.anim.play("hide")
 

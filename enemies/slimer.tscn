@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cm1nhih748qcp" path="res://assets/objects.png" id="1_u4ol8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ra5li"]
-size = Vector2(12, 13)
+size = Vector2(13, 13)
 
 [sub_resource type="Animation" id="Animation_our6w"]
 length = 0.001
@@ -48,9 +48,9 @@ _data = {
 size = Vector2(16, 3.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_235m3"]
-size = Vector2(10, 13)
+size = Vector2(16, 13)
 
-[node name="slimer" type="CharacterBody2D"]
+[node name="slimer" type="CharacterBody2D" groups=["Enemies"]]
 collision_layer = 8
 collision_mask = 9
 script = ExtResource("1_ec1ye")
@@ -64,7 +64,7 @@ vframes = 4
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1.5)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ra5li")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
