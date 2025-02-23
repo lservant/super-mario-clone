@@ -24,6 +24,7 @@ func handle_horizontal(delta: float):
 
 func handle_jump(delta: float):
   if Input.is_action_just_pressed("jump") and player.can_move:
+    SoundManager.play_jump()
     player.velocity.y = -player.jump_height * 500 * delta
     player.change_state("jump")
 
