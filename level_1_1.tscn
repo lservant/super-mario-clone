@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://b4ad07mh7alst"]
+[gd_scene load_steps=20 format=4 uid="uid://b4ad07mh7alst"]
 
 [ext_resource type="Script" path="res://level_1_1.gd" id="1_e43rk"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="1_viccv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cdkdbdo8rlvxa" path="res://enemies/slimer.tscn" id="9_sbgu7"]
 [ext_resource type="PackedScene" uid="uid://bmv5lp3gw0mu6" path="res://ui.tscn" id="10_8qy0n"]
 [ext_resource type="PackedScene" uid="uid://b34mhp4wcgwdo" path="res://checkpoint.tscn" id="13_s4h5s"]
+[ext_resource type="PackedScene" uid="uid://dt3yxdnn2174e" path="res://enemies/hamster/hamster.tscn" id="14_mt507"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4cux"]
 texture = ExtResource("2_yxrcs")
@@ -301,6 +302,7 @@ tile_map_data = PackedByteArray("AADfAA4AAAABAAEAAADfAA0AAAABAAEAAADfAAwAAAABAAE
 tile_set = SubResource("TileSet_y3rt1")
 
 [node name="template" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.482353)
 position = Vector2(1792, 120)
 texture = ExtResource("3_vi8yl")
@@ -655,6 +657,10 @@ height = 14
 
 [node name="enemies" type="Node" parent="."]
 
+[node name="hamster" parent="enemies" instance=ExtResource("14_mt507")]
+position = Vector2(1720, 200)
+direction = 0
+
 [node name="slimers" type="Node" parent="enemies"]
 
 [node name="slimer" parent="enemies/slimers" instance=ExtResource("9_sbgu7")]
@@ -788,7 +794,7 @@ position = Vector2(3360, 40)
 position = Vector2(1328, 192)
 
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(49, 200)
+position = Vector2(49, 208)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(97, 168)
