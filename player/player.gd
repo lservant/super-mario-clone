@@ -36,6 +36,9 @@ func _ready() -> void:
   change_state("idle")
 
 func _physics_process(delta: float) -> void:
+  if !can_move:
+    return
+
   # Add the gravity.
   if not is_on_floor():
     velocity += get_gravity() * delta
@@ -53,12 +56,15 @@ func update_direction():
   var dir := Input.get_axis("move_left", "move_right")
   if dir > 0:
     direction = DIRECTION.RIGHT
-    $small_sprite.flip_h = false
-    $big_sprite.flip_h = false
+    flip_sprites()
   elif dir < 0:
     direction = DIRECTION.LEFT
-    $small_sprite.flip_h = true
-    $big_sprite.flip_h = true
+    flip_sprites()
+
+func flip_sprites():
+  var flip = direction == DIRECTION.LEFT
+  $small_sprite.flip_h = flip
+  $big_sprite.flip_h = flip
 
 func grow():
   SoundManager.play_grow()

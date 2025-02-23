@@ -286,7 +286,7 @@ _data = {
 "hit": SubResource("Animation_v2doa")
 }
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 129
 script = ExtResource("1_ute0i")

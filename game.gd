@@ -7,6 +7,12 @@ var time: int = 400
 
 var spawn: Vector2 = Vector2.ZERO
 
+var _stop_time: bool = false
+func stop_time():
+  _stop_time = true
+func start_time():
+  _stop_time = false
+  
 func add_coin():
   SoundManager.play_coin()
   coins += 1
@@ -37,6 +43,9 @@ func lose_life():
     SoundManager.restart_music()
 
 func countdown_time():
+  if _stop_time:
+    return
+
   time -= 1
   if time <= 0:
     lose_life()

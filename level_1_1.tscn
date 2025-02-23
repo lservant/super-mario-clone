@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://b4ad07mh7alst"]
+[gd_scene load_steps=22 format=4 uid="uid://b4ad07mh7alst"]
 
 [ext_resource type="Script" path="res://level_1_1.gd" id="1_e43rk"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="1_viccv"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://bmv5lp3gw0mu6" path="res://ui.tscn" id="10_8qy0n"]
 [ext_resource type="PackedScene" uid="uid://b34mhp4wcgwdo" path="res://checkpoint.tscn" id="13_s4h5s"]
 [ext_resource type="PackedScene" uid="uid://dt3yxdnn2174e" path="res://enemies/hamster/hamster.tscn" id="14_mt507"]
+[ext_resource type="PackedScene" uid="uid://ccyjmnkymu4e7" path="res://flag.tscn" id="15_abv6x"]
+[ext_resource type="PackedScene" uid="uid://cdx8kruk6ru12" path="res://castle.tscn" id="16_cnbjf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l4cux"]
 texture = ExtResource("2_yxrcs")
@@ -794,7 +796,7 @@ position = Vector2(3360, 40)
 position = Vector2(1328, 192)
 
 [node name="player" parent="." instance=ExtResource("7_6deqd")]
-position = Vector2(49, 208)
+position = Vector2(3017, 72)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
 position = Vector2(97, 168)
@@ -834,6 +836,14 @@ autostart = true
 position = Vector2(1329, 192)
 rotation = 3.14159
 respawn = NodePath("../Spawns/Checkpoint 1 Spawn")
+
+[node name="flag" parent="." node_paths=PackedStringArray("level_exit") instance=ExtResource("15_abv6x")]
+position = Vector2(3177, 192)
+level_exit = NodePath("../Castle")
+
+[node name="Castle" parent="." instance=ExtResource("16_cnbjf")]
+z_index = -1
+position = Vector2(3289, 208)
 
 [connection signal="body_entered" from="bound_bottom" to="." method="_on_bound_bottom_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,146 @@
+[gd_scene load_steps=12 format=3 uid="uid://ccyjmnkymu4e7"]
+
+[ext_resource type="Texture2D" uid="uid://dimagqi1hocgv" path="res://assets/flag.png" id="1_jqtyx"]
+[ext_resource type="Script" path="res://flag.gd" id="1_ot6yg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xopx5"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qis6p"]
+size = Vector2(16, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up2w5"]
+size = Vector2(16, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fwlbx"]
+size = Vector2(16, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dc5c"]
+size = Vector2(16, 162)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lkyy"]
+size = Vector2(6, 161)
+
+[sub_resource type="Animation" id="Animation_1ugbx"]
+resource_name = "slide"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1, -128), Vector2(-1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_w3ymt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("flag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, -128)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gw3pq"]
+_data = {
+"RESET": SubResource("Animation_w3ymt"),
+"slide": SubResource("Animation_1ugbx")
+}
+
+[node name="flag" type="StaticBody2D"]
+script = ExtResource("1_ot6yg")
+
+[node name="score_zones" type="Node2D" parent="."]
+
+[node name="5000" type="Area2D" parent="score_zones"]
+position = Vector2(0, -128)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score_zones/5000"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_xopx5")
+debug_color = Color(0, 0.540476, 0.956986, 0.42)
+
+[node name="2000" type="Area2D" parent="score_zones"]
+position = Vector2(0, -96)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score_zones/2000"]
+position = Vector2(0, -36)
+shape = SubResource("RectangleShape2D_qis6p")
+debug_color = Color(0.60447, 0.366665, 0.99886, 0.42)
+
+[node name="1000" type="Area2D" parent="score_zones"]
+position = Vector2(0, -64)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score_zones/1000"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape2D_up2w5")
+debug_color = Color(0.878779, 0.000378308, 0.826505, 0.42)
+
+[node name="400" type="Area2D" parent="score_zones"]
+position = Vector2(0, -32)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score_zones/400"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_fwlbx")
+debug_color = Color(0.983593, 0, 0.351586, 0.42)
+
+[node name="200" type="Area2D" parent="score_zones"]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="score_zones/200"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_fwlbx")
+debug_color = Color(0.651679, 0.517512, 0.101034, 0.42)
+
+[node name="collider_grab" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collider_grab"]
+position = Vector2(0, -79)
+shape = SubResource("RectangleShape2D_3dc5c")
+debug_color = Color(0.290847, 0.626723, 0.178319, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -80)
+shape = SubResource("RectangleShape2D_6lkyy")
+
+[node name="pole" type="Sprite2D" parent="."]
+position = Vector2(0, -72)
+scale = Vector2(1, 9)
+texture = ExtResource("1_jqtyx")
+hframes = 3
+
+[node name="top" type="Sprite2D" parent="."]
+position = Vector2(0, -152)
+texture = ExtResource("1_jqtyx")
+hframes = 3
+frame = 1
+
+[node name="flag" type="Sprite2D" parent="."]
+position = Vector2(-1, -128)
+texture = ExtResource("1_jqtyx")
+centered = false
+offset = Vector2(-16, -16)
+hframes = 3
+frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gw3pq")
+}
+
+[connection signal="body_entered" from="collider_grab" to="." method="_on_collider_grab_body_entered"]

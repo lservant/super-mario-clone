@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdx8kruk6ru12"]
+
+[ext_resource type="Texture2D" uid="uid://bnqndm6r7t1y4" path="res://assets/castle.png" id="1_2huby"]
+
+[node name="Castle" type="Node2D"]
+
+[node name="left" type="Sprite2D" parent="."]
+position = Vector2(-30, -40)
+texture = ExtResource("1_2huby")
+hframes = 2
+
+[node name="right" type="Sprite2D" parent="."]
+z_index = 10
+z_as_relative = false
+position = Vector2(10, -40)
+texture = ExtResource("1_2huby")
+hframes = 2
+frame = 1
