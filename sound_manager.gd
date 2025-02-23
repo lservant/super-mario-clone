@@ -51,7 +51,12 @@ func play_thud():
 
 #enemies
 @onready var stomp: AudioStreamPlayer = $sounds/stomp
+@onready var hamster: AudioStreamPlayer = $sounds/hamster
 
 func play_stomp(): 
   stomp.play()
   return stomp
+
+func play_hamster(): 
+  hamster.play()
+  return hamster

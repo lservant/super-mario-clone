@@ -49,11 +49,6 @@ func change_direction():
   dir_scalar *= -1
   sprite.flip_h = !sprite.flip_h
 
-func die():
-  SoundManager.play_stomp()
-  Game.add_score(100)
-  change_state("hide")
-
 func hit() -> void:
   print("hit player")
   is_hitting_player = false
@@ -63,6 +58,7 @@ func get_stomped():
   reset_can_kick()
   tprint("stomp")
   reset_can_hit_player()
+  SoundManager.play_hamster()
   player.change_state("bounce")
   if sm.current_state == "move" \
       or sm.current_state == "idle" \
@@ -82,6 +78,7 @@ func get_kicked():
   if !can_kick():
     return
   tprint("kick")
+  SoundManager.play_hamster()
   var angle_to_player = get_angle_to(player.get_center()) / PI
   var desired_direction: DIRECTION = direction
   if angle_to_player >= 0.5 and angle_to_player <= 1.5:

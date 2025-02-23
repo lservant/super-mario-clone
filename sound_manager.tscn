@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfg4ocshobkyl"]
+[gd_scene load_steps=13 format=3 uid="uid://bfg4ocshobkyl"]
 
 [ext_resource type="Script" path="res://sound_manager.gd" id="1_tqrxa"]
 [ext_resource type="AudioStream" uid="uid://c72p3nag1nlfp" path="res://assets/audio/coin.wav" id="2_gbvff"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://5lctgwpb7c4t" path="res://assets/audio/ascending.wav" id="8_e5lc7"]
 [ext_resource type="AudioStream" uid="uid://bycg6icwutgyb" path="res://assets/audio/hit.wav" id="9_vu84w"]
 [ext_resource type="AudioStream" uid="uid://d4l08uw0j8qxe" path="res://assets/audio/thud.wav" id="10_cot6e"]
+[ext_resource type="AudioStream" uid="uid://ci75rlxvkcnfa" path="res://assets/audio/hamster.wav" id="11_3hxn4"]
 [ext_resource type="AudioStream" uid="uid://dd5q5pauy1ti6" path="res://assets/audio/music.wav" id="11_jxa8c"]
 
 [node name="SoundManager" type="Node"]
@@ -51,6 +52,10 @@ volume_db = -20.0
 
 [node name="thud" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("10_cot6e")
+
+[node name="hamster" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("11_3hxn4")
+volume_db = -15.191
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 process_mode = 1
