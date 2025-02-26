@@ -57,6 +57,7 @@ func exit_level():
   tween.tween_property(player, "position:x", player.position.x+20, 0.2)
   tween.tween_property(player, "position:y", player.position.y+16, 0.2)
   tween.tween_property(player, "position", level_exit.position, 1.0)
+  Game.game_over()
 
 func _on_collider_grab_body_entered(body: Node2D) -> void:
   if !body.is_in_group("Player"):

@@ -7,6 +7,7 @@ var left_boundary = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+  $Camera2D.make_current()
   if Game.spawn != Vector2.ZERO:
     player.global_position = Game.spawn
 
@@ -35,3 +36,9 @@ func _on_bound_bottom_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
   Game.countdown_time()
+
+func _on_pipe_to_a_teleporting_to(node:Node2D) -> void:
+  $undergroundcam.make_current()
+
+func _on_pipe_to_b_teleporting_to(node:Node2D) -> void:
+  $Camera2D.make_current()

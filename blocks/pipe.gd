@@ -1,6 +1,8 @@
 extends Node2D
 class_name Pipe
 
+signal teleporting_to(node: Node2D)
+
 @export var teleport_to: Node2D
 
 @export var height = 2
@@ -80,6 +82,8 @@ func teleport_player(player: Player, dir: ENTER_DIR) -> bool:
   var tween = get_tree().create_tween()
   await tween.tween_property(player, "position", player.position + move_by, 0.5).finished
   collider.show()
+
+  teleporting_to.emit(teleport_to)
 
   if teleport_to.is_in_group("Pipes"):
     await teleport_to.eject_player(player)

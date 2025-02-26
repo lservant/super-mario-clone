@@ -55,6 +55,7 @@ func restart_level():
 func restart_game():
   lives = 3
   score = 0
+  unset_spawn()
   restart_level()
 
 func game_over():
