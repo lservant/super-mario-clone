@@ -2,8 +2,8 @@ extends Node
 
 var score: int = 0
 var coins: int = 0
-var lives: int = 99
-var time: int = 400
+var lives: int = 1
+var time: int = 0
 
 var spawn: Vector2 = Vector2.ZERO
 
@@ -31,16 +31,15 @@ func gain_life():
 
 func lose_life():
   pause_game()
+  SoundManager.stop_music()
   SoundManager.play_hit()
   await get_tree().create_timer(0.5).timeout
   lives -= 1
-  time = 400
-  print("Lives: ", lives)
+  time = 0
   if lives <= 0:
     game_over()
   else:
-    get_tree().reload_current_scene()
-    SoundManager.restart_music()
+    restart_level()
 
 func countdown_time():
   if _stop_time:
@@ -50,8 +49,16 @@ func countdown_time():
   if time <= 0:
     lose_life()
 
+func restart_level():
+  get_tree().change_scene_to_file("res://level_start.tscn")
+
+func restart_game():
+  lives = 3
+  score = 0
+  restart_level()
+
 func game_over():
-  print("Game Over")
+  get_tree().change_scene_to_file("res://game_over.tscn")
 
 func pause_game():
   get_tree().paused = true

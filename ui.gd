@@ -20,6 +20,9 @@ func _process(delta: float) -> void:
       Game.pause_game()
 
 func update_ui() -> void:
-  time_label.text = str(Game.time).pad_zeros(3)
+  if Game.time > 0:
+    time_label.text = str(Game.time).pad_zeros(3)
+  else:
+    time_label.text = ""
   score_label.text = str(Game.score).pad_zeros(6)
   coins_label.text = str("x", Game.coins).pad_zeros(2)

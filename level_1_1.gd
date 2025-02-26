@@ -10,7 +10,9 @@ func _ready() -> void:
   if Game.spawn != Vector2.ZERO:
     player.global_position = Game.spawn
 
+  Game.time = 400
   get_tree().paused = false
+  SoundManager.restart_music()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
