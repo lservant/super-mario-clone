@@ -61,4 +61,3 @@ volume_db = -15.191
 process_mode = 1
 stream = ExtResource("11_jxa8c")
 volume_db = -20.0
-autoplay = true

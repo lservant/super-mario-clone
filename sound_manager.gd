@@ -2,6 +2,8 @@ extends Node
 
 @onready var music: AudioStreamPlayer = $music
 
+func stop_music():
+  music.stop()
 func restart_music():
   music.play()
 
@@ -53,10 +55,10 @@ func play_thud():
 @onready var stomp: AudioStreamPlayer = $sounds/stomp
 @onready var hamster: AudioStreamPlayer = $sounds/hamster
 
-func play_stomp(): 
+func play_stomp():
   stomp.play()
   return stomp
 
-func play_hamster(): 
+func play_hamster():
   hamster.play()
   return hamster

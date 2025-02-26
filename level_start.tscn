@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://temf4cnx88q1"]
+
+[ext_resource type="PackedScene" uid="uid://bmv5lp3gw0mu6" path="res://ui.tscn" id="1_gylfb"]
+[ext_resource type="Script" path="res://level_start.gd" id="1_q11xg"]
+[ext_resource type="FontFile" uid="uid://byv4w3tts1ykn" path="res://assets/PublicPixel-rv0pA.ttf" id="2_mbo2d"]
+[ext_resource type="PackedScene" uid="uid://b4ad07mh7alst" path="res://level_1_1.tscn" id="2_rbmb0"]
+[ext_resource type="Texture2D" uid="uid://84vy6iw53yic" path="res://assets/bario_small.png" id="3_2uuu0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q0wf8"]
+line_spacing = 0.0
+font = ExtResource("2_mbo2d")
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_ylbrl"]
+line_spacing = 0.0
+font = ExtResource("2_mbo2d")
+font_size = 8
+
+[node name="level start" type="Node2D"]
+script = ExtResource("1_q11xg")
+level_to_load = ExtResource("2_rbmb0")
+
+[node name="Ui" parent="." instance=ExtResource("1_gylfb")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="BG" type="ColorRect" parent="."]
+offset_right = 256.0
+offset_bottom = 224.0
+color = Color(0, 0, 0, 1)
+
+[node name="World" type="Label" parent="."]
+offset_left = 92.0
+offset_top = 72.0
+offset_right = 136.0
+offset_bottom = 80.0
+text = "World"
+label_settings = SubResource("LabelSettings_q0wf8")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="WorldVal" type="Label" parent="."]
+offset_left = 132.0
+offset_top = 72.0
+offset_right = 176.0
+offset_bottom = 80.0
+text = "1-1"
+label_settings = SubResource("LabelSettings_ylbrl")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Lives" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 111.0
+offset_right = 160.0
+offset_bottom = 119.0
+text = "x"
+label_settings = SubResource("LabelSettings_q0wf8")
+vertical_alignment = 2
+uppercase = true
+
+[node name="LivesVal" type="Label" parent="."]
+offset_left = 128.0
+offset_top = 111.0
+offset_right = 160.0
+offset_bottom = 119.0
+text = "2"
+label_settings = SubResource("LabelSettings_q0wf8")
+horizontal_alignment = 2
+vertical_alignment = 2
+uppercase = true
+
+[node name="BarioSmall" type="Sprite2D" parent="."]
+position = Vector2(108, 112)
+texture = ExtResource("3_2uuu0")
+hframes = 3
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
