@@ -3,6 +3,7 @@ extends StaticBody2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var topside: Area2D = $topside
 
 @export var dark = false
 
@@ -22,12 +23,23 @@ func _on_underside_body_entered(body: Node2D) -> void:
     return
   
   var player: Player = body
+  bump_topside()
   if player.is_big:
     destroy()
   else:
     bounce()
     player.change_state("fall")
-  
+
+func bump_topside():
+  var things_above = topside.get_overlapping_bodies()
+  for thing: CharacterBody2D in things_above:
+    if not thing.is_class("CharacterBody2D"):
+      continue
+
+    thing.velocity.y = -150
+    if thing.is_in_group("Enemies"):
+      thing.die()
+
 func bounce():
   anim.play("bounce")
   SoundManager.play_thud()

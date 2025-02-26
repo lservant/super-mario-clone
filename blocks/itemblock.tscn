@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://dge7fnxrkheod"]
+[gd_scene load_steps=11 format=3 uid="uid://dge7fnxrkheod"]
 
 [ext_resource type="Script" path="res://blocks/itemblock.gd" id="1_0yumg"]
 [ext_resource type="Texture2D" uid="uid://cm1nhih748qcp" path="res://assets/objects.png" id="1_w3dwo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dj337"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq55y"]
+size = Vector2(14, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v45lf"]
 size = Vector2(14, 5)
@@ -141,6 +144,14 @@ frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_dj337")
+
+[node name="topside" type="Area2D" parent="."]
+position = Vector2(0, -16)
+collision_mask = 14
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="topside"]
+position = Vector2(0, 7)
+shape = SubResource("RectangleShape2D_xq55y")
 
 [node name="underside" type="Area2D" parent="."]
 collision_mask = 2

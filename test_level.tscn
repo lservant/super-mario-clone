@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://test_level.gd" id="1_f3wlj"]
 [ext_resource type="TileSet" uid="uid://b4wppphikkrh6" path="res://assets/tileset_ground.tres" id="2_vd370"]
-[ext_resource type="PackedScene" uid="uid://dt3yxdnn2174e" path="res://enemies/hamster/hamster.tscn" id="4_cqdew"]
-[ext_resource type="PackedScene" uid="uid://cdkdbdo8rlvxa" path="res://enemies/slimer.tscn" id="5_wgcaj"]
+[ext_resource type="PackedScene" uid="uid://b3jolqdcm0p5p" path="res://blocks/bricks.tscn" id="4_jgyig"]
+[ext_resource type="PackedScene" uid="uid://cucaivogh5ds8" path="res://items/big_orb.tscn" id="5_wabw7"]
 [ext_resource type="PackedScene" uid="uid://dxxul4cieia5l" path="res://player/player.tscn" id="10_dqis6"]
 
 [node name="level1-1" type="Node2D"]
@@ -18,12 +18,9 @@ tile_set = ExtResource("2_vd370")
 [node name="player" parent="." instance=ExtResource("10_dqis6")]
 position = Vector2(120, 159)
 
-[node name="hamster" parent="." instance=ExtResource("4_cqdew")]
-position = Vector2(128, 184)
-direction = 0
+[node name="bricks" parent="." instance=ExtResource("4_jgyig")]
+position = Vector2(153, 168)
 
-[node name="slimer" parent="." instance=ExtResource("5_wgcaj")]
-position = Vector2(42, 191)
-
-[node name="slimer2" parent="." instance=ExtResource("5_wgcaj")]
-position = Vector2(198, 189)
+[node name="big_orb" parent="." instance=ExtResource("5_wabw7")]
+position = Vector2(153, 152)
+speed = 0

@@ -3,6 +3,7 @@ extends StaticBody2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
 @onready var collider: CollisionShape2D = $CollisionShape2D
 @onready var block: Sprite2D = $block
+@onready var topside: Area2D = $topside
 
 @export_file() var item_path: String
 @export var coins: int = 1
@@ -25,6 +26,16 @@ func _ready() -> void:
   else:
     anim.play("idle")
 
+func bump_topside():
+  var things_above = topside.get_overlapping_bodies()
+  for thing: CharacterBody2D in things_above:
+    if not thing.is_class("CharacterBody2D"):
+      continue
+
+    thing.velocity.y = -150
+    if thing.is_in_group("Enemies"):
+      thing.die()
+
 func _on_underside_body_entered(body: Node2D) -> void:
   if body.name != "player":
     return
@@ -32,6 +43,7 @@ func _on_underside_body_entered(body: Node2D) -> void:
   var player: Player = body
   player.change_state("fall")
   SoundManager.play_thud()
+  bump_topside()
   if not is_empty():
     bounce()
 
