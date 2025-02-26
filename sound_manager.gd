@@ -6,6 +6,11 @@ func stop_music():
   music.stop()
 func restart_music():
   music.play()
+func speed_music():
+  var tween = get_tree().create_tween()
+  tween.tween_property(music, "pitch_scale", 1.5, 5)
+func reset_music():
+  music.pitch_scale = 1
 
 #items
 @onready var coin: AudioStreamPlayer = $sounds/coin

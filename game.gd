@@ -12,6 +12,15 @@ func stop_time():
   _stop_time = true
 func start_time():
   _stop_time = false
+func countdown_time():
+  if _stop_time:
+    return
+
+  time -= 1
+  if time == 100:
+    SoundManager.speed_music()
+  if time <= 0:
+    lose_life()
   
 func add_coin():
   SoundManager.play_coin()
@@ -32,6 +41,7 @@ func gain_life():
 func lose_life():
   pause_game()
   SoundManager.stop_music()
+  SoundManager.reset_music()
   SoundManager.play_hit()
   await get_tree().create_timer(0.5).timeout
   lives -= 1
@@ -40,14 +50,6 @@ func lose_life():
     game_over()
   else:
     restart_level()
-
-func countdown_time():
-  if _stop_time:
-    return
-
-  time -= 1
-  if time <= 0:
-    lose_life()
 
 func restart_level():
   get_tree().change_scene_to_file("res://level_start.tscn")
