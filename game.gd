@@ -2,7 +2,7 @@ extends Node
 
 var score: int = 0
 var coins: int = 0
-var lives: int = 1
+var lives: int = 3
 var time: int = 0
 
 var spawn: Vector2 = Vector2.ZERO
